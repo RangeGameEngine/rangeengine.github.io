@@ -1,0 +1,1479 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Rasterizer (bge.render) &#8212; Range Engine Manual latest documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/bge.render';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Video Texture (bge.texture)" href="bge.texture.html" />
+    <link rel="prev" title="Game Logic (bge.logic)" href="bge.logic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/range_logo.png" class="logo__image only-dark" alt="Range Engine Manual latest documentation - Home"/>
+    <script>document.write(`<img src="../_static/range_logo.png" class="logo__image only-light" alt="Range Engine Manual latest documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/introduction/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/briefing.html">Briefing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/deeper_look.html">A Deeper Look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/compatibility_notes.html">Compatibility Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/linked_libraries.html">Using Linked Libraries In Game</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/introducing_python/index.html">Introducing Python</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/group_instances.html">Dealing With Group Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/python_component.html">Setting Up A Python Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/range_armor/index.html">Range Armor</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/range_armor/exporting_your_project.html">Exporting your Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/editors/index.html">Editors</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/properties/index.html">Properties Editor</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/render.html">Render</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/render_stereo.html">Stereo Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/world.html">World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/object.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/constraints.html">Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/texture.html">Texture</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/physics.html">Physics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_no_collision.html">No Collision Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_static.html">Static Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_dynamic.html">Dynamic Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_rigid_body.html">Rigid Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_soft_body.html">Soft Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_occluder.html">Occlude Object Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_sensor.html">Sensor Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_navigation_mesh.html">Navigation Mesh Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_character.html">Character Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_vehicle.html">Vehicle Controller Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/materials.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/data.html">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/logic/index.html">Logic Editor</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/properties.html">Properties Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/logic_bricks.html">Logic Bricks Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/components.html">Components Panel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/datablocks/index.html">Datablocks</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/group.html">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/datablocks/object.html">Object</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/image.html">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/library.html">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/sound.html">Sound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/action.html">Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/texture.html">Texture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/world.html">World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/logic/index.html">Logic</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/introduction.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/sensors/index.html">Sensors</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/editing.html">Sensor Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/actuator.html">Actuator Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/always.html">Always Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/armature.html">Armature Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/collision.html">Collision Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/delay.html">Delay Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/joystick.html">Joystick Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/keyboard.html">Keyboard Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/message.html">Message Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/mouse.html">Mouse Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/near.html">Near Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/property.html">Property Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/radar.html">Radar Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/random.html">Random Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/ray.html">Ray Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/controllers/index.html">Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/editing.html">Controller Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/and.html">AND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/or.html">OR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nand.html">NAND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nor.html">NOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xor.html">XOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xnor.html">XNOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/expression.html">Expression Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/python.html">Python Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/actuators/index.html">Actuators</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/editing.html">Actuator Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/armature.html">Armature Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/action.html">Action Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/camera.html">Camera Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/constraint.html">Constraints Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/edit_object.html">Edit Object Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/filter_2d.html">Filter 2D Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/game.html">Game Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/message.html">Message Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/mouse.html">Mouse Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/motion.html">Motion Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/parent.html">Parent Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/property.html">Property Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/random.html">Random Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/scene.html">Scene Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/steering.html">Steering Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/sound.html">Sound Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/state.html">State Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/visibility.html">Visibility Actuator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/properties.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/states.html">States</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/release/index.html">Release</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/licensing.html">Licensing of Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/performance.html">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/blender_player.html">Standalone Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/release_procedure.html">Release Procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/about/index.html">About</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/introduction.html">Introduction to the Range Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/license.html">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/whats_new.html">What’s New</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="bge.html">Range Game Engine Modules (bge)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="bge.types.html">Game Types (bge.types)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ActionActuator.html">BL_ActionActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureActuator.html">BL_ArmatureActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureBone.html">BL_ArmatureBone(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureChannel.html">BL_ArmatureChannel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureConstraint.html">BL_ArmatureConstraint(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureObject.html">BL_ArmatureObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Shader.html">BL_Shader(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Texture.html">BL_Texture(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_ListValue.html">EXP_ListValue(EXP_PropValue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PropValue.html">EXP_PropValue(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PyObjectPlus.html">EXP_PyObjectPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_Value.html">EXP_Value(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilter.html">KX_2DFilter(BL_Shader)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterManager.html">KX_2DFilterManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterOffScreen.html">KX_2DFilterOffScreen(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEvent.html">KX_AnimationEvent()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEventsManager.html">KX_AnimationEventsManager()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ArmatureSensor.html">KX_ArmatureSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BatchGroup.html">KX_BatchGroup(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BlenderMaterial.html">KX_BlenderMaterial(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BoundingBox.html">KX_BoundingBox(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Camera.html">KX_Camera(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CameraActuator.html">KX_CameraActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CharacterWrapper.html">KX_CharacterWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionContactPoint.html">KX_CollisionContactPoint(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionSensor.html">KX_CollisionSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintActuator.html">KX_ConstraintActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintWrapper.html">KX_ConstraintWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CubeMap.html">KX_CubeMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_FontObject.html">KX_FontObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameActuator.html">KX_GameActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameObject.html">KX_GameObject(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LibLoadStatus.html">KX_LibLoadStatus(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LightObject.html">KX_LightObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodLevel.html">KX_LodLevel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodManager.html">KX_LodManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Mesh.html">KX_Mesh(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseActuator.html">KX_MouseActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseFocusSensor.html">KX_MouseFocusSensor(SCA_MouseSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MovementSensor.html">KX_MovementSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NavMeshObject.html">KX_NavMeshObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NearSensor.html">KX_NearSensor(KX_CollisionSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageActuator.html">KX_NetworkMessageActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageSensor.html">KX_NetworkMessageSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ObjectActuator.html">KX_ObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ParentActuator.html">KX_ParentActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PlanarMap.html">KX_PlanarMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PolyProxy.html">KX_PolyProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PythonComponent.html">KX_PythonComponent(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RadarSensor.html">KX_RadarSensor(KX_NearSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RaySensor.html">KX_RaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_AddObjectActuator.html">KX_SCA_AddObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_DynamicActuator.html">KX_SCA_DynamicActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_EndObjectActuator.html">KX_SCA_EndObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_ReplaceMeshActuator.html">KX_SCA_ReplaceMeshActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Scene.html">KX_Scene(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SceneActuator.html">KX_SceneActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SoundActuator.html">KX_SoundActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_StateActuator.html">KX_StateActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SteeringActuator.html">KX_SteeringActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TextureRenderer.html">KX_TextureRenderer(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TrackToActuator.html">KX_TrackToActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VehicleWrapper.html">KX_VehicleWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VertexProxy.html">KX_VertexProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VisibilityActuator.html">KX_VisibilityActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_WorldInfo.html">KX_WorldInfo(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_2DFilterActuator.html">SCA_2DFilterActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ANDController.html">SCA_ANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ActuatorSensor.html">SCA_ActuatorSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_AlwaysSensor.html">SCA_AlwaysSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_DelaySensor.html">SCA_DelaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IActuator.html">SCA_IActuator(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IController.html">SCA_IController(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ILogicBrick.html">SCA_ILogicBrick(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IObject.html">SCA_IObject(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ISensor.html">SCA_ISensor(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_InputEvent.html">SCA_InputEvent(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_JoystickSensor.html">SCA_JoystickSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_KeyboardSensor.html">SCA_KeyboardSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_MouseSensor.html">SCA_MouseSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NANDController.html">SCA_NANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NORController.html">SCA_NORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ORController.html">SCA_ORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertyActuator.html">SCA_PropertyActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertySensor.html">SCA_PropertySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonController.html">SCA_PythonController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonJoystick.html">SCA_PythonJoystick(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonKeyboard.html">SCA_PythonKeyboard(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonMouse.html">SCA_PythonMouse(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomActuator.html">SCA_RandomActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomSensor.html">SCA_RandomSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_VibrationActuator.html">SCA_VibrationActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XNORController.html">SCA_XNORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XORController.html">SCA_XORController(SCA_IController)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bge.logic.html">Game Logic (bge.logic)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Rasterizer (bge.render)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.texture.html">Video Texture (bge.texture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.events.html">Game Keys (bge.events)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.constraints.html">Physics Constraints (bge.constraints)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.app.html">Application Data (bge.app)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aud.html">Audio System (aud)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mathutils.html">Math Types &amp; Utilities (mathutils)</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.bvhtree.html">BVHTree Utilities (mathutils.bvhtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.geometry.html">Geometry Utilities (mathutils.geometry)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.interpolate.html">Interpolation Utilities (mathutils.interpolate)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.kdtree.html">KDTree Utilities (mathutils.kdtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.noise.html">Noise Utilities (mathutils.noise)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bgl.html">OpenGL Wrapper (bgl)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blf.html">Font Drawing (blf)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gpu.html">GPU functions (gpu)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gpu.offscreen.html">GPU Off-Screen Buffer (gpu.offscreen)</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/bge.render.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rasterizer (bge.render)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-bge.render">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getWindowWidth"><code class="docutils literal notranslate"><span class="pre">getWindowWidth()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getWindowHeight"><code class="docutils literal notranslate"><span class="pre">getWindowHeight()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setWindowSize"><code class="docutils literal notranslate"><span class="pre">setWindowSize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setFullScreen"><code class="docutils literal notranslate"><span class="pre">setFullScreen()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getFullScreen"><code class="docutils literal notranslate"><span class="pre">getFullScreen()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getDisplayDimensions"><code class="docutils literal notranslate"><span class="pre">getDisplayDimensions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.makeScreenshot"><code class="docutils literal notranslate"><span class="pre">makeScreenshot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.enableVisibility"><code class="docutils literal notranslate"><span class="pre">enableVisibility()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showMouse"><code class="docutils literal notranslate"><span class="pre">showMouse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMousePosition"><code class="docutils literal notranslate"><span class="pre">setMousePosition()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setBackgroundColor"><code class="docutils literal notranslate"><span class="pre">setBackgroundColor()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setEyeSeparation"><code class="docutils literal notranslate"><span class="pre">setEyeSeparation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getEyeSeparation"><code class="docutils literal notranslate"><span class="pre">getEyeSeparation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setFocalLength"><code class="docutils literal notranslate"><span class="pre">setFocalLength()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getFocalLength"><code class="docutils literal notranslate"><span class="pre">getFocalLength()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getStereoEye"><code class="docutils literal notranslate"><span class="pre">getStereoEye()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMaterialMode"><code class="docutils literal notranslate"><span class="pre">setMaterialMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getMaterialMode"><code class="docutils literal notranslate"><span class="pre">getMaterialMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setGLSLMaterialSetting"><code class="docutils literal notranslate"><span class="pre">setGLSLMaterialSetting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getGLSLMaterialSetting"><code class="docutils literal notranslate"><span class="pre">getGLSLMaterialSetting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setAnisotropicFiltering"><code class="docutils literal notranslate"><span class="pre">setAnisotropicFiltering()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getAnisotropicFiltering"><code class="docutils literal notranslate"><span class="pre">getAnisotropicFiltering()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setAntiAliasing"><code class="docutils literal notranslate"><span class="pre">setAntiAliasing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getAntiAliasing"><code class="docutils literal notranslate"><span class="pre">getAntiAliasing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMipmapping"><code class="docutils literal notranslate"><span class="pre">setMipmapping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getMipmapping"><code class="docutils literal notranslate"><span class="pre">getMipmapping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.drawLine"><code class="docutils literal notranslate"><span class="pre">drawLine()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.enableMotionBlur"><code class="docutils literal notranslate"><span class="pre">enableMotionBlur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.disableMotionBlur"><code class="docutils literal notranslate"><span class="pre">disableMotionBlur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showFramerate"><code class="docutils literal notranslate"><span class="pre">showFramerate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showProfile"><code class="docutils literal notranslate"><span class="pre">showProfile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showProperties"><code class="docutils literal notranslate"><span class="pre">showProperties()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.autoDebugList"><code class="docutils literal notranslate"><span class="pre">autoDebugList()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.clearDebugList"><code class="docutils literal notranslate"><span class="pre">clearDebugList()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setVsync"><code class="docutils literal notranslate"><span class="pre">setVsync()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getVsync"><code class="docutils literal notranslate"><span class="pre">getVsync()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.KX_BLENDER_MULTITEX_MATERIAL"><code class="docutils literal notranslate"><span class="pre">KX_BLENDER_MULTITEX_MATERIAL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.KX_BLENDER_GLSL_MATERIAL"><code class="docutils literal notranslate"><span class="pre">KX_BLENDER_GLSL_MATERIAL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_OFF"><code class="docutils literal notranslate"><span class="pre">VSYNC_OFF</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_ON"><code class="docutils literal notranslate"><span class="pre">VSYNC_ON</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_ADAPTIVE"><code class="docutils literal notranslate"><span class="pre">VSYNC_ADAPTIVE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.LEFT_EYE"><code class="docutils literal notranslate"><span class="pre">LEFT_EYE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RIGHT_EYE"><code class="docutils literal notranslate"><span class="pre">RIGHT_EYE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdr">HDR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_NONE"><code class="docutils literal notranslate"><span class="pre">HDR_NONE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_HALF_FLOAT"><code class="docutils literal notranslate"><span class="pre">HDR_HALF_FLOAT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_FULL_FLOAT"><code class="docutils literal notranslate"><span class="pre">HDR_FULL_FLOAT</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mipmap">Mipmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_NONE"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_NONE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_NEAREST"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_NEAREST</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_LINEAR"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_LINEAR</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="rasterizer-bge-render">
+<h1>Rasterizer (bge.render)<a class="headerlink" href="#rasterizer-bge-render" title="Permalink to this heading">#</a></h1>
+<section id="module-bge.render">
+<span id="intro"></span><h2>Intro<a class="headerlink" href="#module-bge.render" title="Permalink to this heading">#</a></h2>
+<p>Example of using a <a class="reference internal" href="bge.types.SCA_MouseSensor.html#SCA_MouseSensor" title="SCA_MouseSensor"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCA_MouseSensor</span></code></a>,
+and two <a class="reference internal" href="bge.types.KX_ObjectActuator.html#KX_ObjectActuator" title="KX_ObjectActuator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_ObjectActuator</span></code></a> to implement MouseLook:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This can also be achieved with the <a class="reference internal" href="bge.types.KX_MouseActuator.html#KX_MouseActuator" title="KX_MouseActuator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_MouseActuator</span></code></a>.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To use a mouse movement sensor &quot;Mouse&quot; and a</span>
+<span class="c1"># motion actuator to mouse look:</span>
+<span class="kn">import</span> <span class="nn">bge</span>
+
+<span class="c1"># scale sets the speed of motion</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span>
+
+<span class="n">co</span> <span class="o">=</span> <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">getCurrentController</span><span class="p">()</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">owner</span>
+<span class="n">mouse</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="s2">&quot;Mouse&quot;</span><span class="p">]</span>
+<span class="n">lmotion</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">actuators</span><span class="p">[</span><span class="s2">&quot;LMove&quot;</span><span class="p">]</span>
+<span class="n">wmotion</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">actuators</span><span class="p">[</span><span class="s2">&quot;WMove&quot;</span><span class="p">]</span>
+
+<span class="c1"># Transform the mouse coordinates to see how far the mouse has moved.</span>
+<span class="k">def</span> <span class="nf">mousePos</span><span class="p">():</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">bge</span><span class="o">.</span><span class="n">render</span><span class="o">.</span><span class="n">getWindowWidth</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">mouse</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+   <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">bge</span><span class="o">.</span><span class="n">render</span><span class="o">.</span><span class="n">getWindowHeight</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">mouse</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">mousePos</span><span class="p">()</span>
+
+<span class="c1"># Set the amount of motion: X is applied in world coordinates...</span>
+<span class="n">wmotion</span><span class="o">.</span><span class="n">useLocalTorque</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">wmotion</span><span class="o">.</span><span class="n">torque</span> <span class="o">=</span> <span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># ...Y is applied in local coordinates</span>
+<span class="n">lmotion</span><span class="o">.</span><span class="n">useLocalTorque</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">lmotion</span><span class="o">.</span><span class="n">torque</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+
+<span class="c1"># Activate both actuators</span>
+<span class="n">co</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">lmotion</span><span class="p">)</span>
+<span class="n">co</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">wmotion</span><span class="p">)</span>
+
+<span class="c1"># Centre the mouse</span>
+<span class="n">bge</span><span class="o">.</span><span class="n">render</span><span class="o">.</span><span class="n">setMousePosition</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">bge</span><span class="o">.</span><span class="n">render</span><span class="o">.</span><span class="n">getWindowWidth</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">bge</span><span class="o">.</span><span class="n">render</span><span class="o">.</span><span class="n">getWindowHeight</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getWindowWidth">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getWindowWidth</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getWindowWidth" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the width of the window (in pixels)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getWindowHeight">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getWindowHeight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getWindowHeight" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the height of the window (in pixels)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setWindowSize">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setWindowSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setWindowSize" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the width and height of the window (in pixels). This also works for fullscreen applications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only works in the standalone player, not the Blender-embedded player.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<em>integer</em>) – width in pixels</p></li>
+<li><p><strong>height</strong> (<em>integer</em>) – height in pixels</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setFullScreen">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setFullScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setFullScreen" title="Permalink to this definition">#</a></dt>
+<dd><p>Set whether or not the window should be fullscreen.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only works in the standalone player, not the Blender-embedded player.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> to set full screen, <code class="docutils literal notranslate"><span class="pre">False</span></code> to set windowed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getFullScreen">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getFullScreen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getFullScreen" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns whether or not the window is fullscreen.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only works in the standalone player, not the Blender-embedded player; there it always returns False.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getDisplayDimensions">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getDisplayDimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getDisplayDimensions" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the display dimensions, in pixels, of the display (e.g., the
+monitor). Can return the size of the entire view, so the
+combination of all monitors; for example, <code class="docutils literal notranslate"><span class="pre">(3840,</span> <span class="pre">1080)</span></code> for two
+side-by-side 1080p monitors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple (width, height)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.makeScreenshot">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">makeScreenshot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.makeScreenshot" title="Permalink to this definition">#</a></dt>
+<dd><p>Writes an image file with the displayed image at the frame end.</p>
+<p>The image is written to <em>‘filename’</em>.
+The path may be absolute (eg. <code class="docutils literal notranslate"><span class="pre">/home/foo/image</span></code>) or relative when started with
+<code class="docutils literal notranslate"><span class="pre">//</span></code> (eg. <code class="docutils literal notranslate"><span class="pre">//image</span></code>). Note that absolute paths are not portable between platforms.
+If the filename contains a <code class="docutils literal notranslate"><span class="pre">#</span></code>,
+it will be replaced by an incremental index so that screenshots can be taken multiple
+times without overwriting the previous ones (eg. <code class="docutils literal notranslate"><span class="pre">image-#</span></code>).</p>
+<p>Settings for the image are taken from the render settings (file format and respective settings,
+gamma and colospace conversion, etc).
+The image resolution matches the framebuffer, meaning, the window size and aspect ratio.
+When running from the standalone player, instead of the embedded player, only PNG files are supported.
+Additional color conversions are also not supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – path and name of the file to write</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.enableVisibility">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">enableVisibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visible</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.enableVisibility" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated; doesn’t do anything.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.showMouse">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">showMouse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visible</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.showMouse" title="Permalink to this definition">#</a></dt>
+<dd><p>Enables or disables the operating system mouse cursor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>visible</strong> (<em>boolean</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setMousePosition">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setMousePosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setMousePosition" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the mouse cursor position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>integer</em>) – X-coordinate in screen pixel coordinates.</p></li>
+<li><p><strong>y</strong> (<em>integer</em>) – Y-coordinate in screen pixel coordinates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setBackgroundColor">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setBackgroundColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgba</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setBackgroundColor" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated and no longer functional. Use <a class="reference internal" href="bge.types.KX_WorldInfo.html#KX_WorldInfo.horizonColor" title="KX_WorldInfo.horizonColor"><code class="xref py py-data docutils literal notranslate"><span class="pre">KX_WorldInfo.horizonColor</span></code></a> or <a class="reference internal" href="bge.types.KX_WorldInfo.html#KX_WorldInfo.zenithColor" title="KX_WorldInfo.zenithColor"><code class="xref py py-data docutils literal notranslate"><span class="pre">KX_WorldInfo.zenithColor</span></code></a> instead.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setEyeSeparation">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setEyeSeparation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eyesep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setEyeSeparation" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the eye separation for stereo mode. Usually Focal Length/30 provides a confortable value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>eyesep</strong> (<em>float</em>) – The distance between the left and right eye.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getEyeSeparation">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getEyeSeparation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getEyeSeparation" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the current eye separation for stereo mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setFocalLength">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setFocalLength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">focallength</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setFocalLength" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the focal length for stereo mode. It uses the current camera focal length as initial value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>focallength</strong> (<em>float</em>) – The focal length.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getFocalLength">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getFocalLength</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getFocalLength" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the current focal length for stereo mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getStereoEye">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getStereoEye</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getStereoEye" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the current stereoscopy eye being rendered.
+This function is mainly used in a <a class="reference internal" href="bge.types.KX_Scene.html#KX_Scene.pre_draw" title="KX_Scene.pre_draw"><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_Scene.pre_draw</span></code></a> callback
+function to customize the camera projection matrices for each
+stereoscopic eye.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>LEFT_EYE, RIGHT_EYE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setMaterialMode">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setMaterialMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setMaterialMode" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated and no longer functional.</p>
+<p>Set the material mode to use for OpenGL rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>KX_TEXFACE_MATERIAL</em><em>, </em><em>KX_BLENDER_MULTITEX_MATERIAL</em><em>, </em><em>KX_BLENDER_GLSL_MATERIAL</em>) – material mode</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changes will only affect newly created scenes.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getMaterialMode">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getMaterialMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getMaterialMode" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated and no longer functional.</p>
+<p>Get the material mode to use for OpenGL rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>KX_TEXFACE_MATERIAL, KX_BLENDER_MULTITEX_MATERIAL, KX_BLENDER_GLSL_MATERIAL</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setGLSLMaterialSetting">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setGLSLMaterialSetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setting</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setGLSLMaterialSetting" title="Permalink to this definition">#</a></dt>
+<dd><p>Enables or disables a GLSL material setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>setting</strong> (<em>string</em><em> (</em><em>lights</em><em>, </em><em>shaders</em><em>, </em><em>shadows</em><em>, </em><em>ramps</em><em>, </em><em>nodes</em><em>, </em><em>extra_textures</em><em>)</em>) – </p></li>
+<li><p><strong>enable</strong> (<em>boolean</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getGLSLMaterialSetting">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getGLSLMaterialSetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setting</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getGLSLMaterialSetting" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the state of a GLSL material setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>setting</strong> (<em>string</em><em> (</em><em>lights</em><em>, </em><em>shaders</em><em>, </em><em>shadows</em><em>, </em><em>ramps</em><em>, </em><em>nodes</em><em>, </em><em>extra_textures</em><em>)</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setAnisotropicFiltering">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setAnisotropicFiltering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setAnisotropicFiltering" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the anisotropic filtering level for textures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>integer</em><em> (</em><em>must be one</em><em> of </em><em>1</em><em>, </em><em>2</em><em>, </em><em>4</em><em>, </em><em>8</em><em>, </em><em>16</em><em>)</em>) – The new anisotropic filtering level to use</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing this value can cause all textures to be recreated, which can be slow.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getAnisotropicFiltering">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getAnisotropicFiltering</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getAnisotropicFiltering" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the anisotropic filtering level used for textures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer (one of 1, 2, 4, 8, 16)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setAntiAliasing">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setAntiAliasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setAntiAliasing" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the anti aliasing level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>integer</em><em> (</em><em>must be one</em><em> of </em><em>0</em><em>, </em><em>2</em><em>, </em><em>4</em><em>, </em><em>8</em><em>, </em><em>16</em><em>)</em>) – The new anti aliasing level to use</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing this value cause all off screens to be recreated, which can be slow.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getAntiAliasing">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getAntiAliasing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getAntiAliasing" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the anti aliasing level setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer (one of 0, 2, 4, 8, 16)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setMipmapping">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setMipmapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setMipmapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Change how to use mipmapping.</p>
+<dl class="field-list simple">
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Changing this value can cause all textures to be recreated, which can be slow.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getMipmapping">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getMipmapping</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getMipmapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the current mipmapping setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>RAS_MIPMAP_NONE, RAS_MIPMAP_NEAREST, RAS_MIPMAP_LINEAR</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.drawLine">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">drawLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fromVec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toVec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.drawLine" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw a line in the 3D scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fromVec</strong> (<em>list</em><em> [</em><em>x</em><em>, </em><em>y</em><em>, </em><em>z</em><em>]</em>) – the origin of the line</p></li>
+<li><p><strong>toVec</strong> (<em>list</em><em> [</em><em>x</em><em>, </em><em>y</em><em>, </em><em>z</em><em>]</em>) – the end of the line</p></li>
+<li><p><strong>color</strong> (<em>list</em><em> [</em><em>r</em><em>, </em><em>g</em><em>, </em><em>b</em><em>, </em><em>a</em><em>]</em>) – the color of the line</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.enableMotionBlur">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">enableMotionBlur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.enableMotionBlur" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable the motion blur effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>factor</strong> (<em>float</em><em> [</em><em>0.0 - 1.0</em><em>]</em>) – the ammount of motion blur to display.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.disableMotionBlur">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">disableMotionBlur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.disableMotionBlur" title="Permalink to this definition">#</a></dt>
+<dd><p>Disable the motion blur effect.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.showFramerate">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">showFramerate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.showFramerate" title="Permalink to this definition">#</a></dt>
+<dd><p>Show or hide the framerate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>boolean</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.showProfile">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">showProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.showProfile" title="Permalink to this definition">#</a></dt>
+<dd><p>Show or hide the profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>boolean</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.showProperties">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">showProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.showProperties" title="Permalink to this definition">#</a></dt>
+<dd><p>Show or hide the debug properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>boolean</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.autoDebugList">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">autoDebugList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.autoDebugList" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable or disable auto adding debug properties to the debug list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>boolean</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.clearDebugList">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">clearDebugList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.clearDebugList" title="Permalink to this definition">#</a></dt>
+<dd><p>Clears the debug property list.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.setVsync">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">setVsync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.setVsync" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the vsync value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>integer</em>) – One of VSYNC_OFF, VSYNC_ON, VSYNC_ADAPTIVE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.render.getVsync">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">getVsync</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bge.render.getVsync" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the current vsync value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>One of VSYNC_OFF, VSYNC_ON, VSYNC_ADAPTIVE</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">#</a></h2>
+<section id="general">
+<h3>General<a class="headerlink" href="#general" title="Permalink to this heading">#</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.KX_BLENDER_MULTITEX_MATERIAL">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">KX_BLENDER_MULTITEX_MATERIAL</span></span><a class="headerlink" href="#bge.render.KX_BLENDER_MULTITEX_MATERIAL" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated.</p>
+<p>Materials approximating blender materials with multitexturing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.KX_BLENDER_GLSL_MATERIAL">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">KX_BLENDER_GLSL_MATERIAL</span></span><a class="headerlink" href="#bge.render.KX_BLENDER_GLSL_MATERIAL" title="Permalink to this definition">#</a></dt>
+<dd><p>Deprecated.</p>
+<p>Materials approximating blender materials with GLSL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.VSYNC_OFF">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">VSYNC_OFF</span></span><a class="headerlink" href="#bge.render.VSYNC_OFF" title="Permalink to this definition">#</a></dt>
+<dd><p>Disables vsync.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.VSYNC_ON">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">VSYNC_ON</span></span><a class="headerlink" href="#bge.render.VSYNC_ON" title="Permalink to this definition">#</a></dt>
+<dd><p>Enables vsync.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.VSYNC_ADAPTIVE">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">VSYNC_ADAPTIVE</span></span><a class="headerlink" href="#bge.render.VSYNC_ADAPTIVE" title="Permalink to this definition">#</a></dt>
+<dd><p>Enables adaptive vsync, if supported.
+Adaptive vsync enables vsync if the framerate is above the monitors refresh rate.
+Otherwise, vsync is diabled if the framerate is too low.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.LEFT_EYE">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">LEFT_EYE</span></span><a class="headerlink" href="#bge.render.LEFT_EYE" title="Permalink to this definition">#</a></dt>
+<dd><p>Left eye being used during stereoscopic rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.RIGHT_EYE">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">RIGHT_EYE</span></span><a class="headerlink" href="#bge.render.RIGHT_EYE" title="Permalink to this definition">#</a></dt>
+<dd><p>Right eye being used during stereoscopic rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="hdr">
+<span id="render-hdr"></span><h3>HDR<a class="headerlink" href="#hdr" title="Permalink to this heading">#</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.HDR_NONE">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">HDR_NONE</span></span><a class="headerlink" href="#bge.render.HDR_NONE" title="Permalink to this definition">#</a></dt>
+<dd><p>Use 8 bit per channel image format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.HDR_HALF_FLOAT">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">HDR_HALF_FLOAT</span></span><a class="headerlink" href="#bge.render.HDR_HALF_FLOAT" title="Permalink to this definition">#</a></dt>
+<dd><p>Use 16 bit float per channel image format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.HDR_FULL_FLOAT">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">HDR_FULL_FLOAT</span></span><a class="headerlink" href="#bge.render.HDR_FULL_FLOAT" title="Permalink to this definition">#</a></dt>
+<dd><p>Use 32 bit float per channel image format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="mipmap">
+<span id="render-mipmap"></span><h3>Mipmap<a class="headerlink" href="#mipmap" title="Permalink to this heading">#</a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.RAS_MIPMAP_NONE">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">RAS_MIPMAP_NONE</span></span><a class="headerlink" href="#bge.render.RAS_MIPMAP_NONE" title="Permalink to this definition">#</a></dt>
+<dd><p>Disables mipmaps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.RAS_MIPMAP_NEAREST">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">RAS_MIPMAP_NEAREST</span></span><a class="headerlink" href="#bge.render.RAS_MIPMAP_NEAREST" title="Permalink to this definition">#</a></dt>
+<dd><p>Nearest mipmaps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.render.RAS_MIPMAP_LINEAR">
+<span class="sig-prename descclassname"><span class="pre">bge.render.</span></span><span class="sig-name descname"><span class="pre">RAS_MIPMAP_LINEAR</span></span><a class="headerlink" href="#bge.render.RAS_MIPMAP_LINEAR" title="Permalink to this definition">#</a></dt>
+<dd><p>Linear mipmaps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bge.logic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Game Logic (bge.logic)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bge.texture.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Video Texture (bge.texture)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-bge.render">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getWindowWidth"><code class="docutils literal notranslate"><span class="pre">getWindowWidth()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getWindowHeight"><code class="docutils literal notranslate"><span class="pre">getWindowHeight()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setWindowSize"><code class="docutils literal notranslate"><span class="pre">setWindowSize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setFullScreen"><code class="docutils literal notranslate"><span class="pre">setFullScreen()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getFullScreen"><code class="docutils literal notranslate"><span class="pre">getFullScreen()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getDisplayDimensions"><code class="docutils literal notranslate"><span class="pre">getDisplayDimensions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.makeScreenshot"><code class="docutils literal notranslate"><span class="pre">makeScreenshot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.enableVisibility"><code class="docutils literal notranslate"><span class="pre">enableVisibility()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showMouse"><code class="docutils literal notranslate"><span class="pre">showMouse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMousePosition"><code class="docutils literal notranslate"><span class="pre">setMousePosition()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setBackgroundColor"><code class="docutils literal notranslate"><span class="pre">setBackgroundColor()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setEyeSeparation"><code class="docutils literal notranslate"><span class="pre">setEyeSeparation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getEyeSeparation"><code class="docutils literal notranslate"><span class="pre">getEyeSeparation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setFocalLength"><code class="docutils literal notranslate"><span class="pre">setFocalLength()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getFocalLength"><code class="docutils literal notranslate"><span class="pre">getFocalLength()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getStereoEye"><code class="docutils literal notranslate"><span class="pre">getStereoEye()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMaterialMode"><code class="docutils literal notranslate"><span class="pre">setMaterialMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getMaterialMode"><code class="docutils literal notranslate"><span class="pre">getMaterialMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setGLSLMaterialSetting"><code class="docutils literal notranslate"><span class="pre">setGLSLMaterialSetting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getGLSLMaterialSetting"><code class="docutils literal notranslate"><span class="pre">getGLSLMaterialSetting()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setAnisotropicFiltering"><code class="docutils literal notranslate"><span class="pre">setAnisotropicFiltering()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getAnisotropicFiltering"><code class="docutils literal notranslate"><span class="pre">getAnisotropicFiltering()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setAntiAliasing"><code class="docutils literal notranslate"><span class="pre">setAntiAliasing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getAntiAliasing"><code class="docutils literal notranslate"><span class="pre">getAntiAliasing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setMipmapping"><code class="docutils literal notranslate"><span class="pre">setMipmapping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getMipmapping"><code class="docutils literal notranslate"><span class="pre">getMipmapping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.drawLine"><code class="docutils literal notranslate"><span class="pre">drawLine()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.enableMotionBlur"><code class="docutils literal notranslate"><span class="pre">enableMotionBlur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.disableMotionBlur"><code class="docutils literal notranslate"><span class="pre">disableMotionBlur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showFramerate"><code class="docutils literal notranslate"><span class="pre">showFramerate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showProfile"><code class="docutils literal notranslate"><span class="pre">showProfile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.showProperties"><code class="docutils literal notranslate"><span class="pre">showProperties()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.autoDebugList"><code class="docutils literal notranslate"><span class="pre">autoDebugList()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.clearDebugList"><code class="docutils literal notranslate"><span class="pre">clearDebugList()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.setVsync"><code class="docutils literal notranslate"><span class="pre">setVsync()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.getVsync"><code class="docutils literal notranslate"><span class="pre">getVsync()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.KX_BLENDER_MULTITEX_MATERIAL"><code class="docutils literal notranslate"><span class="pre">KX_BLENDER_MULTITEX_MATERIAL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.KX_BLENDER_GLSL_MATERIAL"><code class="docutils literal notranslate"><span class="pre">KX_BLENDER_GLSL_MATERIAL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_OFF"><code class="docutils literal notranslate"><span class="pre">VSYNC_OFF</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_ON"><code class="docutils literal notranslate"><span class="pre">VSYNC_ON</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.VSYNC_ADAPTIVE"><code class="docutils literal notranslate"><span class="pre">VSYNC_ADAPTIVE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.LEFT_EYE"><code class="docutils literal notranslate"><span class="pre">LEFT_EYE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RIGHT_EYE"><code class="docutils literal notranslate"><span class="pre">RIGHT_EYE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdr">HDR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_NONE"><code class="docutils literal notranslate"><span class="pre">HDR_NONE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_HALF_FLOAT"><code class="docutils literal notranslate"><span class="pre">HDR_HALF_FLOAT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.HDR_FULL_FLOAT"><code class="docutils literal notranslate"><span class="pre">HDR_FULL_FLOAT</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mipmap">Mipmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_NONE"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_NONE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_NEAREST"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_NEAREST</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.render.RAS_MIPMAP_LINEAR"><code class="docutils literal notranslate"><span class="pre">RAS_MIPMAP_LINEAR</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Range Engine
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright This page is licensed under a CC-BY-SA 4.0 Int. License..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

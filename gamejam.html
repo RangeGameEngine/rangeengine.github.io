@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Range GameJam</title>
+    <meta name="description" content="Range Engine is an Light and Powerful Game Engine and 3D Software. Where you can make your own Models, Materials, Animations, and Publish Your Game"/>
+    <meta name="theme-color" content="#f00000">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Range Engine"/>
+    <meta property="og:description" content="Range Engine is an Light and Powerful Game Engine and 3D Software. Where you can make your own Models, Materials, Animations, and Publish Your Game"/>
+    <meta property="og:site_name" content="Range Engine"/>
+    <meta property="og:image" content="https://rangeengine.tech//img/ogp_splash.jpg"/>
+	  <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header_footer.css"/>
+    <link rel="stylesheet" href="/css/rangecss.css"/>
+    <link rel="stylesheet" href="/css/gamejamcss.css"/>
+    <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+      $(function(){
+          $("#header").load("../../header.html");
+          $("#footer").load("../../footer.html");
+      });
+    </script>
+    <!--script src="/js/countdown.js"></script-->
+  </head>
+  <body onload="updateClock()">
+    <div id="loading">
+      <div></div>
+    </div>
+    <div id="header"></div>
+    <section class="indexsec">
+      <video class="backvideo" style="filter:blur(5px);" poster="/img/gamejam/2025/gamejamback.png" preload="" autoplay="" muted="" playsinline="" loop=""></video>
+      <script src="/js/parallax.js"></script>
+      <div style="display: inline-block;width: 100%;">
+        <h1 class="jam-current"><img src="/img/RanGEs.png" style="width:20%;position:absolute;z-index:-1;margin: -6% 0 0 -10%;opacity:80%;">Range GameJam 1</h1>
+        <h2 class="jam-theme">Soon....</h2>
+        <!--h2 class="jam-theme">Theme Reveal:</h2>
+        <div class="counter-block-divs">
+          <div class="counter-block">
+            <p id="months-left"></p>
+            <i>months</i>
+          </div>
+          <div class="counter-block">
+            <p id="days-left"></p>
+            <i>days</i>
+          </div>
+          <div class="counter-block">
+            <p id="hours-left"></p>
+            <i>hours</i>
+          </div>
+          <div class="counter-block">
+            <p id="minutes-left"></p>
+            <i>minutes</i>
+          </div>
+          <div class="counter-block">
+            <p class="counter-block-sec-p" id="seconds-left"></p>
+            <i>seconds</i>
+          </div>
+        </div>
+        <p class="jam-theme" style="margin-top:15px;">Start: 00.00.2025 | End: 00.00.2025</p>
+      </div-->
+    </section>
+    <style>
+      article{
+        backdrop-filter: blur(0px)!important;
+      }
+      .about-clps {
+        margin: 0 145px;
+      }
+      .about-clps-cont {
+        margin: 0;
+      }
+      .clps-bt {
+        background-color: #00000000;
+        border-top: 2px solid white;
+        border-radius: 0px;
+        color: white;
+      }
+      .clps-bt:hover{
+        background-color: #ffffff25;
+      }
+      .clps-cont {
+        background-color: #00000000;
+      }
+      .clps-bt::after {
+        content: image-set('/img/arrow_down.svg');
+        font-weight: bold;
+        font-size: 15px;
+        color: rgb(0, 0, 0);
+        float: left;
+        margin: -2px 5px 0 0;
+        transition: all 0.15s ease-out;
+      }
+      .active_clps {
+        background-color: #ffffff25;
+      }
+      .active_clps::after {
+        content: image-set('/img/arrow_down.svg');
+        rotate: 180deg;
+        margin: -4px 5px 0 0;
+        transition: all 0.15s ease-in;
+      }
+      @media (max-width: 850px) {
+        .about-clps {
+        margin: 0 50px;
+        }
+        .patr-mural-div {
+          margin: 0px 0px;
+        }
+      }
+    </style>
+    <article style="padding-top:10px;background-color:#1e1e1e;border-top: 4px solid white;">
+      <h3 class="supp-mural-tit" style="margin: 20px 0;">About</h3>
+      <div class="about-clps">
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Prizes</button>
+          <div class="clps-cont">
+            <p>1st Place - $100 (per team) or Launch the winning game on Steam (with the support of the Range Engine Team)<br>
+              2nd Place - 8 months of Prime role on the Range Engine Discord<br>
+              3rd Place - 4 months of Plus role on the Range Engine Discord<br><br>
+              If you want to sponsor the Range GameJam consider making a donation in our official <a class="alink" style="cursor:pointer;" title="contact@rangeengine.tech">PayPal (contact@rangeengine.tech)</a>. All the donation will be converted in prizes for the jam, And your name will be fixed in the Range GameJam page as the jam sponsor.</p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Can I form teams?</button>
+          <div class="clps-cont">
+            <p>You can participate solo or with a team of up to 4 people.<br><br>
+              If you want to participate but feel you need a team, join the <a class="alink" href="https://discord.gg/PV6bAvUFq3">Range Engine Discord</a> server and introduce yourself in the #collabs chat. (Reminder, the first-place prize is shared among the team, while the other prizes are distributed individually to each team member).</p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Is the use of Assets/Content allowed?</button>
+          <div class="clps-cont">
+            <p>The use of online assets and content is allowed, as long they have free licenses such as Creative Commons (CC0) or Attribution (CC BY), and proper credit is given.<br>
+              You can also use the content from <a class="alink" href="store">Range Engine Store</a>.</p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">How the voting process works?</button>
+          <div class="clps-cont">
+            <p>The voting process consists of 50% public votes and 50% votes from a specialized Range Engine team.<br>
+              Besides voting for the best games, the Range Engine team will also rate each game based on gameplay, story, optimization, level design, sound design, and graphics. These ratings will be averaged, with a final score out of 10.</p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Can participants help each other during the GameJam?</button>
+          <div class="clps-cont">
+            <p>Yes, participants are allowed to assist each other during the jam period.<br>
+            If you struggle with something during the jam you can solve your questions in the #help chat on the <a class="alink" href="https://discord.gg/PV6bAvUFq3">Range Engine Discord</a>.</p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Consequences for Rule Violation</button>
+          <div class="clps-cont">
+            <p>
+              Non-compliance with the rules will result in disqualification.<br>
+              The Range Engine Team is not responsible for any possible damages caused by the jam's games, the game's author will be held responsible for any dishonesty/intentional deception actions or any damage caused by their game, being subject to legal sanctions.
+            </p>
+          </div> 
+        </div>
+      </div>
+      <h3 class="supp-mural-tit" style="margin: 20px 0;">Rules</h3>
+      <div class="about-clps">
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Use of Content and Music</button>
+          <div class="clps-cont">
+            <p>
+              Explicitly copied content from other games is not allowed.<br>
+              The use of copyrighted effects/music is NOT allowed, as the developed games will be broadcasted on the Range Engine channel.
+            </p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Inappropriate Content</button>
+          <div class="clps-cont">
+            <p>
+              Any form of vulgar content, or any references to politics or religion is strictly prohibited.<br>
+              Gore content should NOT be represented through real photos or videos, but should be exclusively fictional and stylized.
+            </p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Documentation and Transparency</button>
+          <div class="clps-cont">
+            <p>
+              Is reccommended that each team provide prints of development documenting the progress and main phases of development of the game throughout the days of the jam in the #work-in-progress chat on the <a class="alink" href="https://discord.gg/PV6bAvUFq3">Range Engine Discord</a>.
+            </p>
+          </div> 
+        </div>
+        <div class="about-clps-cont">
+          <button type="button" class="clps-bt">Operating System Interactions</button>
+          <div class="clps-cont">
+            <p>
+              Games should not contain commands that interact directly with the user's operating system, such as commands to shut down the computer or delete files.
+            </p>
+          </div> 
+        </div>
+      </div>
+    </article>
+    <script>
+      var coll = document.getElementsByClassName("clps-bt");
+      var i;
+    
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active_clps");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+            content.style.maxHeight = null;
+            content.style.padding = '0px 15px';
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.padding = '10px 15px';
+          } 
+        });
+      }
+    </script>
+    <!--div style="display:inline-block;padding:20px 0px;width:100%;background:linear-gradient(0deg,#57442a/*#4b1313*/,#1e1e1e);">
+      <style>
+        :root{
+          --first_place:#ac9163;
+          --sec_place:#a0a0a0;
+          --third_place:#815949;
+        }
+      </style>
+      <h3 class="supp-mural-tit" style="margin: 20px 0;">Winners</h3>
+      <div class="supp-mural">
+        <div class="patr-mural-div">
+          <div class="patr-mural-artc-title" style="background-color:var(--sec_place);box-shadow: 0px 0px 20px 5px #292929;display:inline-block;width:50%;">
+            <h4 style="font-size:18px;"><i class="material-symbols-outlined" style="top:2px;">workspace_premium</i> 2° Place</h4>
+          </div>
+          <div style="width:50%;display:inline-block;background-color:var(--sec_place);box-shadow: 5px 5px 10px 2px #00000025;">
+            <a href="#">
+              <img src="/img/gamejam/2025/featured-games/ .png" alt=" " style="width:100%;height:auto;">
+              <div style="padding: 2% 4%;background:var(--sec_place);">
+                <h3> </h3>
+                <p>By:  </p>
+              </div>
+            </a>
+          </div>
+          <div class="patr-mural-dash" style="width:50%;display:inline-block;background:var(--sec_place);"></div>
+        </div>
+        <div class="patr-mural-div">
+          <div class="patr-mural-artc-title" style="background-color:var(--first_place);box-shadow: 0px 0px 20px 5px #caa16b52;display:inline-block;width:50%;">
+            <h4><i class="material-symbols-outlined" style="top:2px;">trophy</i> 1° Place</h4>
+          </div>
+          <div style="width:50%;display:inline-block;background-color:var(--first_place);box-shadow: 5px 5px 10px 2px #00000025;">
+            <a href="#">
+              <img src="/img/gamejam/2025/featured-games/ .png" alt=" " style="width:100%;height:auto;">
+              <div style="padding: 2% 4%;background:var(--first_place);">
+                <h3> </h3>
+                <p>By:  </p>
+              </div>
+            </a>
+          </div>
+          <div class="patr-mural-dash" style="box-shadow: 0px 0px 20px 5px #caa16b52;width:50%;display:inline-block;"></div>
+        </div>
+        <div class="patr-mural-div">
+          <div class="patr-mural-artc-title" style="background-color:var(--third_place);box-shadow: 0px 0px 20px 5px #00000020;display:inline-block;width:50%;">
+            <h4 style="font-size:18px;"><i class="material-symbols-outlined" style="top:2px;">military_tech</i> 3° Place</h4>
+          </div>
+          <div style="width:50%;display:inline-block;background-color:var(--third_place);box-shadow: 5px 5px 10px 2px #00000025;">
+            <a href="#">
+              <img src="/img/gamejam/2025/featured-games/ .png" alt=" " style="width:100%;height:auto;">
+              <div style="padding: 2% 4%;background:var(--third_place);">
+                <h3> </h3>
+                <p>By:  </p>
+              </div>
+            </a>
+          </div>
+          <div class="patr-mural-dash" style="width:50%;display:inline-block;background:var(--third_place);"></div>
+        </div>
+      </div>
+    </div>
+    <article style="display:block;background-color:rgba(15, 15, 15, 0.5);">
+      <h3 class="supp-mural-tit">All Games</h3>
+      <div class="featured-games-tab">
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="featured-games-tab">
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+        <div class="featured-game">
+          <a href="#">
+            <img src="/img/gamejam/2025/featured-games/ .png" alt=" ">
+            <div>
+              <h3> </h3>
+              <p>By:  </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </article-->
+    <article class="jam-live-artc">
+      <div class="jam-live-desc">
+        <p>Watch the official playthrough<br> of all games in the <b style="font-size:50px;">Range Engine Channel</b><br> on youtube.</p>
+        <img src="/img/icons/youtube.svg">
+        <p style="font-size:20px;"><br><br><i>The playthroughs will be recorded and streamed after the end of the gamejam.</i></p>
+      </div>
+      <iframe width="660" height="415" src="https://www.youtube.com/embed/zVM7GF-9A_g?si=owOxe-NPLGWNRFav" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </article>
+    <div id="footer"></div>
+    <!--Page Loading Ends Here-->
+    <script>
+      var loader = document.getElementById("loading");
+      window.addEventListener("load", function(){
+        loader.style.display = "none";
+      })
+    </script>
+    <!---->
+  </body>
+</html>

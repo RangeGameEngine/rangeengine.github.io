@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Range Engine Store</title>
+    <meta name="description" content="Simple Clouds Shader With Nodes"/>
+    <meta name="theme-color" content="#f00000">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simple Clouds Shader - Range Engine Store"/>
+    <meta property="og:description" content="Simple Clouds Shader With Nodes"/>
+    <meta property="og:site_name" content="Range Engine"/>
+    <meta property="og:image" content="/store/data/shaders/thumbs/simpleCloudsNodes.jpg"/>
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header_footer.css"/>
+    <link rel="stylesheet" href="../../css/store.css"/>
+    <link rel="shortcut icon" href="../../img/favicon.png" type="x-png"/>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <style>
+      #header {display: none;}
+      header {position: static!important;background-color: #131313!important;}
+      #footer {display: none;}
+      </style>
+    <script>
+      window.onload = function() {
+        if (window.self === window.top) {
+          //document.getElementByClassName('pdt-body').style, {height: '60%', backgroundColor: '#3e3e3e'};
+          var elements = document.getElementsByClassName('pdt-body');
+          for (var i = 0; i < elements.length; i++) {
+            elements[i].style.height = '84.6vh';
+            elements[i].style.background = 'linear-gradient(#111111, #111111)';
+          }
+          document.getElementById('header').style.display = 'flex';
+          document.getElementById('footer').style.display = 'flex';
+        }
+      }
+    </script>
+    <script>
+      $(function(){
+        $("#header").load("../../header.html");
+        $("#footer").load("../../footer.html");
+      });
+    </script>
+  </head>
+  <body id="body" style="margin:0;">
+    <div id="header"></div>
+    <div class="pdt-body">
+      <div class="pdtpage-img">
+        <img src="/store/data/shaders/thumbs/simpleCloudsNodes.jpg" alt="/store/data/shaders/thumbs/simpleCloudsNodes.jpg">
+      </div>
+      <div class="pdtpage-info">
+        <h1 id="pdt-artc">Simple Clouds Shader</h1>
+        <div class="pdtpage-main-info" id="pdt-artc">
+          <div style="text-align:left;margin-left:20px;">
+            <p>Author: Range Engine Team</p>
+            <p>License: GPL</p>
+          </div>
+          <div style="margin-right:20px;">
+            <p>Version: 1.0</p>
+            <p>Range Engine Version: 1.6+</p>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;align-items:center;" id="pdt-artc">
+          <p style="font-size:30px;margin:0px 25px 0px 0px;">Price: Free</p>
+          <div class="spl-link-button">
+            <div class="spl-link-ico">
+              <i class="material-symbols-outlined">Download</i>
+            </div>
+            <a href="/store/data/shaders/simpleCloudsNodes.range">Download</a>
+          </div>
+        </div>
+        <p class="pdt-description" id="pdt-artc">Description:<br>Simple Clouds Shader With Nodes</p>
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>

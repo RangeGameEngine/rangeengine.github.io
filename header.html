@@ -1,9 +1,8 @@
 <head>
-    <script src="/js/responsivenav.js" defer></script>
-    <script src="/js/headercolor.js"></script>
+    <script src="/js/responsivenav.js"></script>
 </head>
 <header class="header">
-    <h1 class="title" style="margin-top:4px;"><a href="/"><img class="logo" src="/img/RangeEngineExtendedLogo.png" alt="RanGELogo"/></a></h1>
+    <h1 class="title"><a href="/"><img class="logo" src="/img/RangeEngineExtendedLogo.png" alt="RanGELogo"/></a></h1>
     <a class="togglebutton">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -11,20 +10,28 @@
     </a>
     <nav class="headerlinks">
         <ul class="heaul">
-            <li class="headerlis"><i class="material-symbols-outlined">Home</i><a class="healinks" href="/"> Home</a></li>
-            <li class="headerlis"><i class="material-symbols-outlined">Download</i><a class="healinks" href="/download"> Download</a></li>
+            <li class="headerlis"><i class="material-symbols-outlined" translate="no">Download</i><a class="healinks" href="/download"> Download</a></li>
+            <li class="headerlis"><i class="material-symbols-outlined" translate="no">Store</i><a class="healinks" href="/store"> Store<span class="newcirclespan"></span></a></li>
             <li class="dropdownh">
-                <span class="dpdhbt">News<span class="newcirclespan"></span> <i class="material-symbols-outlined">expand_more</i></span>
+                <span class="dpdhbt" translate=no><i class="material-symbols-outlined">construction</i> Tools<span class="newcirclespan"></span> <i class="material-symbols-outlined" translate="no">expand_more</i></span>
                 <div class="dpdhitems">
-                    <a href="/whatsnew"><i class="material-symbols-outlined">Celebration</i> What's New</a>
-                    <a href="https://github.com/rangeengine/Range-Engine-Wiki/wiki/Release-notes"><i class="material-symbols-outlined">library_books</i> Changelog</a>
+                    <a href="/tools/textureresizer"><i class="material-symbols-outlined" translate="no">image</i> Texture Resizer</a>
+                    <a href="/tools/orm"><i class="material-symbols-outlined" translate="no">colors</i> ORM Generator</a>
                 </div>
             </li>
-            <li class="headerlis"><i class="material-symbols-outlined">Store</i><a class="healinks" href="/store"> Store</a></li>
-            <li class="headerlis"><i class="material-symbols-outlined">library_books</i><a class="healinks" href="/apireleases"> API</a></li>
-            <li class="headerlis"><i class="material-symbols-outlined">live_help</i><a class="healinks" href="/faq"> FAQ</a></li>
+            <li class="headerlis"><i class="material-symbols-outlined" translate="no">joystick</i><a class="healinks" href="/gamejam"> GameJam<!--span class="newcirclespan"></span--></a></li>
             <li class="dropdownh">
-                <span class="dpdhbt" id="dpdhbtsupp"><i class="material-symbols-outlined">health_and_safety</i> Support <i class="material-symbols-outlined">expand_more</i></span>
+                <span class="dpdhbt" translate=no><i class="material-symbols-outlined">newspaper</i> News <i class="material-symbols-outlined" translate="no">expand_more</i></span>
+                <div class="dpdhitems">
+                    <a href="/whatsnew"><i class="material-symbols-outlined" translate="no">Celebration</i> What's New</a>
+                    <a href="https://github.com/rangeengine/Range-Engine-Wiki/wiki/Release-notes"><i class="material-symbols-outlined" translate="no">library_books</i> Changelog</a>
+                    <a href="/newspage.html"><i class="material-symbols-outlined" translate="no">newspaper</i> News</a>
+                </div>
+            </li>
+            <li class="headerlis"><i class="material-symbols-outlined" translate="no">library_books</i><a class="healinks" href="/rangeapi"> API</a></li>
+            <li class="headerlis"><i class="material-symbols-outlined" translate="no">live_help</i><a class="healinks" href="/faq"> FAQ</a></li>
+            <li class="dropdownh">
+                <span class="dpdhbt" id="dpdhbtsupp" translate=no><i class="material-symbols-outlined">health_and_safety</i> Support <i class="material-symbols-outlined" translate="no">expand_more</i></span>
                 <div class="dpdhitems">
                     <a href="https://www.patreon.com/rangeengine" target="_blank"><img class="footer-links-icon" src="/img/icons/patreon.svg" style="width:20px;height:20px;margin-right:5px;"></img> Patreon</a>
                     <a href="mailto:contact@rangeengine.tech"><img class="footer-links-icon" src="/img/icons/paypal.svg" style="width:20px;height:20px;margin-right:5px;"></img> PayPal</a>

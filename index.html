@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Range Engine</title>
-    <meta name="description" content="Range Engine is an Light and Powerful Game Engine and 3D Software. Where you can make your own Models, Materials, Animations, and Publish Your Game"/>
+    <meta name="description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
     <meta name="theme-color" content="#f00000">
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Range Engine"/>
-    <meta property="og:description" content="Range Engine is an Light and Powerful Game Engine and 3D Software. Where you can make your own Models, Materials, Animations, and Publish Your Game"/>
+    <meta property="og:description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
     <meta property="og:site_name" content="Range Engine"/>
     <meta property="og:image" content="https://rangeengine.tech//img/ogp_splash.jpg"/>
 	  <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/rangecss.css"/>
+    <link rel="stylesheet" href="/css/splash.css"/>
+    <link rel="stylesheet" href="/css/header_footer.css"/>
     <link rel="stylesheet" href="/css/sliders.css"/>
     <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
@@ -26,31 +29,171 @@
           $("#footer").load("../../footer.html");
       });
     </script>
-    <script>
-      $(document).on('scroll', function(){
-        if ( $(window).scrollTop() > 400) {
-          $('.header').addClass('activeh');
-        } else {
-          $('.header').removeClass('activeh');
-        }
-      });
-    </script>
-    <script src="/js/responsivenav.js" defer></script>
   </head>
   <body>
+    <div id="splash-container">
+      <div class="splash active" id="splash">
+        <div class="splash-slide active" id="slide0" style="height:55%;">
+          <h2>Welcome To Range Engine!</h2>
+          <p class="splash-h2-desc">Let us introduce you the engine with a quick guide.</p>
+          <div class="splash-slide-content">
+            <img class="splash-slide-logo" src="/img/RanGEs.png" alt="">
+            <ul style="font-size: 22px;text-align: left;margin:20px 0 0 5px;padding:0;">
+              <li>Who is Range Engine made for?</li>
+              <li>What can be done with Range?</li>
+              <li>What knowledge is required?</li>
+              <li>Where to interact with other users/devs?</li>
+            </ul>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="startGuide()">Start</button>
+            <button class="splash-declineBtn" onclick="closeGuide()">No, Thanks</button> 
+          </div>
+        </div>
+        <div class="splash-slide" id="slide1">
+          <h2>Who is Range Engine made for?</h2>
+          <p class="splash-h2-desc">"From Gamedevs to Gamedevs"</p>
+          <div class="splash-slide-content" style="flex-direction:column;justify-content:initial;align-items:center;">
+            <img src="/img/whatsnew/pbr.gif" alt="" style="position:absolute;z-index:-1;">
+            <p class="splash-text-desc">
+              Range Engine has the proposal of being <b>a game engine for Indie Developers</b>, 
+              designed with important features to make the game development fluent and efficient.
+              The terms of Range Engine have no bureaucracy compared to other engines that abuse indie developers with absurd fees and high machine requirements.
+            </p>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="nextSlide(2)">Next</button>
+            <button class="splash-declineBtn" onclick="nextSlide(0)">Previous</button> 
+          </div>
+        </div>
+        <div class="splash-slide" id="slide2">
+          <h2>What can be done with RanGE?</h2>
+          <p class="splash-h2-desc">Flexibility + Possibilities</p>
+          <div class="splash-slide-content" style="flex-direction:column;justify-content:initial;align-items:center;">
+            <img src="/img/sliders/environment.webp" alt="" style="position:absolute;z-index:-1;">
+            <p class="splash-text-desc">
+              Range Engine is designed with exceptional flexibility, making it ideal for all types of games, from simple platformers to intricate open-world adventures. 
+              Its performance scales with your project, ensuring no unnecessary load. This adaptability empowers developers of all levels to create unique and groundbreaking games, 
+              opening endless possibilities for creativity.
+            </p>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="nextSlide(3)">Next</button>
+            <button class="splash-declineBtn" onclick="nextSlide(1)">Previous</button> 
+          </div>
+        </div>
+        <div class="splash-slide" id="slide3">
+          <h2>What knowledge is required?</h2>
+          <p class="splash-h2-desc">You are capable to start today!</p>
+          <div class="splash-slide-content" style="flex-direction:column;justify-content:initial;align-items:center;">
+            <img src="/img/sliders/brickynodes.jpg" alt="" style="position:absolute;z-index:-1;">
+            <p class="splash-text-desc">
+              Range Engine is highly accessible and flexible, using Python for scripting and featuring simple Logic Bricks for creating game logic without advanced coding skills. <br>
+              The engine has a robust <a class="alink" href="apireleases">API Documentation</a>, and its quick learning curve allows both beginners and experienced developers to create games efficiently.<br>
+              It's highly reccomended to understand at least the basics of Python to get the full capacity of the engine, check out this <a class="alink" href="https://www.coursera.org/learn/python-crash-course">Free Python Course by Google.</a></p>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="nextSlide(4)">Next</button> 
+            <button class="splash-declineBtn" onclick="nextSlide(2)">Previous</button>
+          </div>
+        </div>
+        <div class="splash-slide" id="slide4">
+          <h2>Where to interact with other users/devs?</h2>
+          <div class="splash-slide-content" style="flex-direction:column;justify-content:initial;align-items:center;">
+            <img src="/img/benefits/discordsupport.png" alt="" style="position:absolute;z-index:-1;">
+            <p class="splash-text-desc">
+              Connecting with the engine communities can significantly accelerate your learning process. By engaging with seasoned users and developers, you gain valuable insights, stay updated with the latest features, and receive prompt support.<br>
+              So join in our official networks and get ready to start interacting with the community!
+            </p>
+            <div class="footer-links">
+              <a target=”_blank” href="https://discord.gg/PV6bAvUFq3"><img class="footer-links-icon" src="/img/icons/discord.svg">Discord Server</a>
+              <a target=”_blank” href="https://youtube.com/channel/UCWLwYxekuvOVaMsquS3OgPg"><img class="footer-links-icon" src="/img/icons/youtube.svg">YouTube Channel</a>
+            </div>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="nextSlide(5)">Next</button> 
+            <button class="splash-declineBtn" onclick="nextSlide(3)">Previous</button>
+          </div>
+        </div>
+        <div class="splash-slide" id="slide5">
+          <h2>Ready to start!</h2>
+          <div class="splash-slide-content">
+            <img class="splash-slide-logo" src="/img/RanGEs.png" alt="">
+            <p class="splash-text-desc" style="background:transparent;">
+              Now that you’re fully equipped with the essential knowledge and guidance, 
+              it's time to start your journey with Range Engine. 
+              This introduction will enable you to start your gamedev process with confidence. 
+              Your journey begins now, and success is within reach. 
+              Embrace this opportunity and make the most of it!
+            </p>
+          </div>
+          <div style="margin: 0 8%;display:flex;justify-content:right;">
+            <button class="splash-nextBtn" onclick="closeGuide()">Finish</button> 
+            <button class="splash-declineBtn" onclick="nextSlide(4)">Previous</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+      }
+
+      function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        const expires = `expires=${d.toUTCString()}`;
+        document.cookie = `${name}=${value}; ${expires}; path=/`;
+      }
+
+      const startGuide = () => nextSlide(1);
+
+      // Function to show the next slide
+      const nextSlide = (slideNumber) => {
+          const splash = document.getElementById('splash');
+          splash.classList.remove('active');
+          setTimeout(() => {
+              document.querySelectorAll('.splash-slide').forEach(slide => {
+                  slide.classList.remove('active');
+                  slide.style.display = 'none';
+              });
+              const nextSlide = document.getElementById(`slide${slideNumber}`);
+              nextSlide.style.display = 'flex';
+              nextSlide.classList.add('active');
+              splash.classList.add('active');
+            }, 500);
+      };
+
+      const closeGuide = () => {
+        document.getElementById('splash-container').remove();
+        setCookie('hasVisited', 'true', 365);
+      };
+
+      window.onload = () => {
+        if (!getCookie('hasVisited')) {
+            document.getElementById('splash-container').style.display = 'flex';
+        } else {
+            document.getElementById('splash-container').style.display = 'none';
+        }
+      };
+    </script>
+
     <div id="loading">
       <div></div>
     </div>
     <div id="header"></div>
-    <section class="indexsec" style="padding-top:15%;padding-bottom:15%;">
+    <section class="indexsec">
       <video class="backvideo" poster="/img/posterback.jpg" preload="" autoplay="" muted="" playsinline="" loop="">
         <source src="/img/Background_RangeWebsite.mp4" type="video/mp4">
       </video>
       <script src="/js/parallax.js"></script>
       <div class="splashhome">
         <div>
-          <h2 class="splashtitsec">Experience Range Engine<p class="animbar">│</p></h2>
+          <h2 class="splashtitsec"><img src="/img/moon.png" style="width:15%;position:absolute;z-index:-1;margin: -5% 0 0 -9.8%;opacity:100%;rotate:10deg;filter:contrast(150%);">Experience Range Engine<p class="animbar" translate="no">│</p></h2>
           <p class="titdesc">Powerful | Light | Easy</p>
+          <p class="titdesc-mobile">Powerful<br>Light<br>Easy</p>
         </div>
         <div class="downnabout" style="font-family:Roboto Condensed;">
           <div class="splash-links">
@@ -67,7 +210,7 @@
               <a href="whatsnew" style="background-color:rgba(36, 95, 188, 0.21);">What's New</a>
             </div>
           </div>
-          <div class="splash-links">
+          <!--div class="splash-links">
             <div class="spl-link-button" id="link-button-grey">
               <div class="spl-link-ico" style="background-color:rgb(100, 100, 100);">
                 <i class="material-symbols-outlined">live_help</i>
@@ -75,7 +218,7 @@
               <a href="faq" style="background-color:rgba(145, 145, 145, 0.21);">FAQ</a>
             </div>
           </div>
-        </div>
+        </div-->
       </div>
     </div>
     </section>
@@ -83,19 +226,27 @@
       <h2 class="ltsnw-title"><i style="padding:10px;background-color:#373737;"></i>Latest News:</h2>
       <div class="ltsnw-items">
         <div class="ltsnw-highlight">
-          <a class="ltsnw-highlight-item" href="news/2024_03/range-engine-15a-is-out.html">
+          <a class="ltsnw-highlight-item" href="news/2025_01/range-engine-16-is-released.html">
             <div>
-              <img src="news/2024_03/thumbs/RangeEngine15aAnnouncement.png" alt="">
+              <img src="news/2025_01/thumbs/RangeEngine16Announcement.png" alt="">
             </div>
             <div class="ltsnw-highlight-desc">
-              <h3>Range Engine 1.5a Is Out</h3>
-              <p>Range Engine 1.5 was a sucessful release in it's early access. So we decided to<br>make more improvements and finally bring Range Engine 1.5a for everyone!</p>
-              <p class="ltsnw-newsdate">News Date: 24/03/2024</p>
+              <h3>Range Engine 1.6 LTS Is Officially Released!</h3>
+              <p>After almost a year of hard work we are proud to announce the long-awaited launch of the Range Engine 1.6 LTS.</p>
+              <p class="ltsnw-newsdate">News Date: 19/01/2025</p>
             </div>
           </a>
         </div>
         <div class="ltsnw-news">
           <div>
+            <a class="ltsnw-hl-item" href="news/2024_03/range-engine-15a-is-out.html">
+                <img src="news/2024_03/thumbs/RangeEngine15aAnnouncement.png" alt="">
+              <div class="ltsnw-hl-item-desc">
+                <h3>Range Engine 1.5a Is Out</h3>
+                <p>Range Engine 1.5 was a sucessful release in it's early access. So we decided to<br>make more improvements and finally bring Range Engine 1.5a for everyone!</p>
+                <p class="ltsnw-newsdate">News Date: 24/03/2024</p>
+              </div>
+            </a>
             <a class="ltsnw-hl-item" href="/news/2023_12/the-future-of-range-engine-16.html">
               <img src="news/2023_12/thumbs/futureofrange16splash.jpg" alt="">
               <div class="ltsnw-hl-item-desc">
@@ -112,17 +263,9 @@
                 <p class="ltsnw-newsdate">News Date: 26/11/2023</p>
               </div>
             </a>
-            <a class="ltsnw-hl-item" href="/news/2023_11/getting-ready-to-range-20.html">
-              <img src="news/2023_11/thumbs/gettingreadytoreange16.jpg" alt="">
-              <div class="ltsnw-hl-item-desc">
-                <h3>Getting Ready To Range 2.0</h3>
-                <p>Learn more about the goals to Range Engine 2.0 and what<br>things it will bring.</p>
-                <p class="ltsnw-newsdate">News Date: 26/11/2023</p>
-              </div>
-            </a>
             <div class="spl-link-button" id="link-button-grey">
               <div class="spl-link-ico" style="background-color:rgb(100, 100, 100);">
-                <i class="material-symbols-outlined">News</i>
+                <i class="material-symbols-outlined">newspaper</i>
               </div>
               <a href="newspage" style="background-color:rgba(145, 145, 145, 0.21);">Previous News</a>
             </div>
@@ -188,7 +331,7 @@
             <div class="h-article-description">
               <h3 style="text-align:right;">Code With Python Or Visual Language</h3>
               <p style="text-align:right;">Range Engine makes coding looks easy, you can code with <b>Python 3.10</b><br>
-              or make visual scripting with <b>Visual Language</b>, you can also use both ways<br>together! <a class="alink" href="whatsnew">(Cython and Range Nodes Coming Soon)</a></p>
+              or make visual scripting with <b>Visual Language</b>, you can also use both ways<br>together! <a class="alink" href="whatsnew">(Range Nodes Coming Soon)</a></p>
             </div>
             <ul class="slider">
               <li>
@@ -231,6 +374,18 @@
       article{
         backdrop-filter: blur(0px)!important;
       }
+      .clps-cont {
+        background-color: #00000000;
+      }
+      .clps-bt::after {
+        color: white;
+      }
+      .about-clps {
+        margin: 0 145px;
+      }
+      .about-clps-cont {
+        margin: 0;
+      }
       .clps-bt {
         background-color: #00000000;
         border-top: 2px solid white;
@@ -244,7 +399,30 @@
         background-color: #00000000;
       }
       .clps-bt::after {
-        color: white;
+        content: image-set('/img/arrow_down.svg');
+        font-weight: bold;
+        font-size: 15px;
+        color: rgb(0, 0, 0);
+        float: left;
+        margin: -2px 5px 0 0;
+        transition: all 0.15s ease-out;
+      }
+      .active_clps {
+        background-color: #ffffff25;
+      }
+      .active_clps::after {
+        content: image-set('/img/arrow_down.svg');
+        rotate: 180deg;
+        margin: -4px 5px 0 0;
+        transition: all 0.15s ease-in;
+      }
+      @media (max-width: 850px) {
+        .about-clps {
+        margin: 0 50px;
+        }
+        .patr-mural-div {
+          margin: 0px 0px;
+        }
       }
     </style>
     <div style="padding:40px 0px 40px 0px;background-color:#0f0f0fe0;backdrop-filter:blur(10px);justify-content:center;">
@@ -294,5 +472,9 @@
       })
     </script>
     <!---->
+    <script>
+      const icons = document.querySelectorAll('i');
+      icons.forEach(icon => { icon.setAttribute('translate', 'no'); });
+    </script>
   </body>
 </html>

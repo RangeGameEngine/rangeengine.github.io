@@ -1,0 +1,1782 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>GPU functions (gpu) &#8212; Range Engine Manual latest documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/gpu';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GPU Off-Screen Buffer (gpu.offscreen)" href="gpu.offscreen.html" />
+    <link rel="prev" title="Font Drawing (blf)" href="blf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/range_logo.png" class="logo__image only-dark" alt="Range Engine Manual latest documentation - Home"/>
+    <script>document.write(`<img src="../_static/range_logo.png" class="logo__image only-light" alt="Range Engine Manual latest documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/introduction/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/briefing.html">Briefing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/deeper_look.html">A Deeper Look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/compatibility_notes.html">Compatibility Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/linked_libraries.html">Using Linked Libraries In Game</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/introducing_python/index.html">Introducing Python</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/group_instances.html">Dealing With Group Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/python_component.html">Setting Up A Python Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/range_armor/index.html">Range Armor</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/range_armor/exporting_your_project.html">Exporting your Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/editors/index.html">Editors</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/properties/index.html">Properties Editor</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/render.html">Render</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/render_stereo.html">Stereo Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/world.html">World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/object.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/constraints.html">Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/texture.html">Texture</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/physics.html">Physics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_no_collision.html">No Collision Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_static.html">Static Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_dynamic.html">Dynamic Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_rigid_body.html">Rigid Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_soft_body.html">Soft Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_occluder.html">Occlude Object Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_sensor.html">Sensor Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_navigation_mesh.html">Navigation Mesh Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_character.html">Character Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_vehicle.html">Vehicle Controller Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/materials.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/data.html">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/logic/index.html">Logic Editor</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/properties.html">Properties Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/logic_bricks.html">Logic Bricks Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/components.html">Components Panel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/datablocks/index.html">Datablocks</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/group.html">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/datablocks/object.html">Object</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/image.html">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/library.html">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/sound.html">Sound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/action.html">Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/texture.html">Texture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/world.html">World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/logic/index.html">Logic</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/introduction.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/sensors/index.html">Sensors</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/editing.html">Sensor Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/actuator.html">Actuator Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/always.html">Always Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/armature.html">Armature Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/collision.html">Collision Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/delay.html">Delay Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/joystick.html">Joystick Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/keyboard.html">Keyboard Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/message.html">Message Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/mouse.html">Mouse Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/near.html">Near Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/property.html">Property Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/radar.html">Radar Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/random.html">Random Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/ray.html">Ray Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/controllers/index.html">Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/editing.html">Controller Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/and.html">AND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/or.html">OR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nand.html">NAND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nor.html">NOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xor.html">XOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xnor.html">XNOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/expression.html">Expression Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/python.html">Python Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/actuators/index.html">Actuators</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/editing.html">Actuator Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/armature.html">Armature Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/action.html">Action Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/camera.html">Camera Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/constraint.html">Constraints Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/edit_object.html">Edit Object Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/filter_2d.html">Filter 2D Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/game.html">Game Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/message.html">Message Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/mouse.html">Mouse Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/motion.html">Motion Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/parent.html">Parent Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/property.html">Property Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/random.html">Random Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/scene.html">Scene Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/steering.html">Steering Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/sound.html">Sound Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/state.html">State Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/visibility.html">Visibility Actuator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/properties.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/states.html">States</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/release/index.html">Release</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/licensing.html">Licensing of Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/performance.html">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/blender_player.html">Standalone Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/release_procedure.html">Release Procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/about/index.html">About</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/introduction.html">Introduction to the Range Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/license.html">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/whats_new.html">What’s New</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="bge.html">Range Game Engine Modules (bge)</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bge.types.html">Game Types (bge.types)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ActionActuator.html">BL_ActionActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureActuator.html">BL_ArmatureActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureBone.html">BL_ArmatureBone(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureChannel.html">BL_ArmatureChannel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureConstraint.html">BL_ArmatureConstraint(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureObject.html">BL_ArmatureObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Shader.html">BL_Shader(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Texture.html">BL_Texture(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_ListValue.html">EXP_ListValue(EXP_PropValue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PropValue.html">EXP_PropValue(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PyObjectPlus.html">EXP_PyObjectPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_Value.html">EXP_Value(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilter.html">KX_2DFilter(BL_Shader)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterManager.html">KX_2DFilterManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterOffScreen.html">KX_2DFilterOffScreen(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEvent.html">KX_AnimationEvent()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEventsManager.html">KX_AnimationEventsManager()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ArmatureSensor.html">KX_ArmatureSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BatchGroup.html">KX_BatchGroup(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BlenderMaterial.html">KX_BlenderMaterial(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BoundingBox.html">KX_BoundingBox(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Camera.html">KX_Camera(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CameraActuator.html">KX_CameraActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CharacterWrapper.html">KX_CharacterWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionContactPoint.html">KX_CollisionContactPoint(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionSensor.html">KX_CollisionSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintActuator.html">KX_ConstraintActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintWrapper.html">KX_ConstraintWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CubeMap.html">KX_CubeMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_FontObject.html">KX_FontObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameActuator.html">KX_GameActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameObject.html">KX_GameObject(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LibLoadStatus.html">KX_LibLoadStatus(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LightObject.html">KX_LightObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodLevel.html">KX_LodLevel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodManager.html">KX_LodManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Mesh.html">KX_Mesh(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseActuator.html">KX_MouseActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseFocusSensor.html">KX_MouseFocusSensor(SCA_MouseSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MovementSensor.html">KX_MovementSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NavMeshObject.html">KX_NavMeshObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NearSensor.html">KX_NearSensor(KX_CollisionSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageActuator.html">KX_NetworkMessageActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageSensor.html">KX_NetworkMessageSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ObjectActuator.html">KX_ObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ParentActuator.html">KX_ParentActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PlanarMap.html">KX_PlanarMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PolyProxy.html">KX_PolyProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PythonComponent.html">KX_PythonComponent(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RadarSensor.html">KX_RadarSensor(KX_NearSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RaySensor.html">KX_RaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_AddObjectActuator.html">KX_SCA_AddObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_DynamicActuator.html">KX_SCA_DynamicActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_EndObjectActuator.html">KX_SCA_EndObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_ReplaceMeshActuator.html">KX_SCA_ReplaceMeshActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Scene.html">KX_Scene(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SceneActuator.html">KX_SceneActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SoundActuator.html">KX_SoundActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_StateActuator.html">KX_StateActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SteeringActuator.html">KX_SteeringActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TextureRenderer.html">KX_TextureRenderer(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TrackToActuator.html">KX_TrackToActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VehicleWrapper.html">KX_VehicleWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VertexProxy.html">KX_VertexProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VisibilityActuator.html">KX_VisibilityActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_WorldInfo.html">KX_WorldInfo(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_2DFilterActuator.html">SCA_2DFilterActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ANDController.html">SCA_ANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ActuatorSensor.html">SCA_ActuatorSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_AlwaysSensor.html">SCA_AlwaysSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_DelaySensor.html">SCA_DelaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IActuator.html">SCA_IActuator(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IController.html">SCA_IController(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ILogicBrick.html">SCA_ILogicBrick(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IObject.html">SCA_IObject(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ISensor.html">SCA_ISensor(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_InputEvent.html">SCA_InputEvent(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_JoystickSensor.html">SCA_JoystickSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_KeyboardSensor.html">SCA_KeyboardSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_MouseSensor.html">SCA_MouseSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NANDController.html">SCA_NANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NORController.html">SCA_NORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ORController.html">SCA_ORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertyActuator.html">SCA_PropertyActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertySensor.html">SCA_PropertySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonController.html">SCA_PythonController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonJoystick.html">SCA_PythonJoystick(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonKeyboard.html">SCA_PythonKeyboard(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonMouse.html">SCA_PythonMouse(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomActuator.html">SCA_RandomActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomSensor.html">SCA_RandomSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_VibrationActuator.html">SCA_VibrationActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XNORController.html">SCA_XNORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XORController.html">SCA_XORController(SCA_IController)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bge.logic.html">Game Logic (bge.logic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.render.html">Rasterizer (bge.render)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.texture.html">Video Texture (bge.texture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.events.html">Game Keys (bge.events)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.constraints.html">Physics Constraints (bge.constraints)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.app.html">Application Data (bge.app)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aud.html">Audio System (aud)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mathutils.html">Math Types &amp; Utilities (mathutils)</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.bvhtree.html">BVHTree Utilities (mathutils.bvhtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.geometry.html">Geometry Utilities (mathutils.geometry)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.interpolate.html">Interpolation Utilities (mathutils.interpolate)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.kdtree.html">KDTree Utilities (mathutils.kdtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.noise.html">Noise Utilities (mathutils.noise)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bgl.html">OpenGL Wrapper (bgl)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blf.html">Font Drawing (blf)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">GPU functions (gpu)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gpu.offscreen.html">GPU Off-Screen Buffer (gpu.offscreen)</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/gpu.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>GPU functions (gpu)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-data-type">GLSL Data Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_1I"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_1I</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_1F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_1F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_2F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_2F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_3F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_3F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_4F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_4F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_9F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_9F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_16F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_16F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_4UB"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_4UB</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-uniform-types">GLSL Uniform Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-object-uniforms">GLSL Object Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_MAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_MAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWIMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWIMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_IMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_IMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_COLOR</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-lamp-uniforms">GLSL Lamp Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNVEC"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNVEC</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNCO"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNCO</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNIMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNIMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNPERSMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNENERGY"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNENERGY</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNCOL"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNCOL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DISTANCE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DISTANCE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_ATT1"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_ATT1</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_ATT2"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_ATT2</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSIZE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSIZE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTBLEND"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTBLEND</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSCALE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSCALE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-sampler-uniforms">GLSL Sampler Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DBUFFER</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DIMAGE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DSHADOW</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-mist-uniforms">GLSL Mist Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_START"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_START</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_DISTANCE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_DISTANCE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_INTENSITY"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_INTENSITY</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_TYPE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_TYPE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_COLOR</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-world-uniforms">GLSL World Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_HORIZON_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_HORIZON_COLOR</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_AMBIENT_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_AMBIENT_COLOR</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-material-uniforms">GLSL Material Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_DIFFRGB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_DIFFRGB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_REF"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_REF</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_SPECRGB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_SPECRGB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_SPEC"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_SPEC</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_HARD"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_HARD</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_EMIT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_EMIT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_AMB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_AMB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_ALPHA"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_ALPHA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-attribute-type">GLSL Attribute Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_MTFACE"><code class="docutils literal notranslate"><span class="pre">CD_MTFACE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_MCOL"><code class="docutils literal notranslate"><span class="pre">CD_MCOL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_ORCO"><code class="docutils literal notranslate"><span class="pre">CD_ORCO</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_TANGENT"><code class="docutils literal notranslate"><span class="pre">CD_TANGENT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.export_shader"><code class="docutils literal notranslate"><span class="pre">export_shader()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="module-gpu">
+<span id="gpu-functions-gpu"></span><h1>GPU functions (gpu)<a class="headerlink" href="#module-gpu" title="Permalink to this heading">#</a></h1>
+<p>This module provides access to materials GLSL shaders.</p>
+<p>Submodules:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gpu.offscreen.html">GPU Off-Screen Buffer (gpu.offscreen)</a></li>
+</ul>
+</div>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">#</a></h2>
+<p>Module to provide functions concerning the GPU implementation in Blender, in particular
+the GLSL shaders that blender generates automatically to render materials in the 3D view
+and in the game engine.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The API provided by this module is subject to change.
+The data exposed by the API are are closely related to Blender’s internal GLSL code
+and may change if the GLSL code is modified (e.g. new uniform type).</p>
+</div>
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">#</a></h2>
+<section id="glsl-data-type">
+<h3>GLSL Data Type<a class="headerlink" href="#glsl-data-type" title="Permalink to this heading">#</a></h3>
+<p id="data-type">Type of GLSL data.
+For shader uniforms, the data type determines which <code class="docutils literal notranslate"><span class="pre">glUniform</span></code> function
+variant to use to send the uniform value to the GPU.
+For vertex attributes, the data type determines which <code class="docutils literal notranslate"><span class="pre">glVertexAttrib</span></code> function
+variant to use to send the vertex attribute to the GPU.</p>
+<p>See <a class="reference internal" href="#export-shader">export_shader</a></p>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_1I">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_1I</span></span><a class="headerlink" href="#gpu.GPU_DATA_1I" title="Permalink to this definition">#</a></dt>
+<dd><p>one integer</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_1F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_1F</span></span><a class="headerlink" href="#gpu.GPU_DATA_1F" title="Permalink to this definition">#</a></dt>
+<dd><p>one float</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_2F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_2F</span></span><a class="headerlink" href="#gpu.GPU_DATA_2F" title="Permalink to this definition">#</a></dt>
+<dd><p>two floats</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_3F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_3F</span></span><a class="headerlink" href="#gpu.GPU_DATA_3F" title="Permalink to this definition">#</a></dt>
+<dd><p>three floats</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_4F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_4F</span></span><a class="headerlink" href="#gpu.GPU_DATA_4F" title="Permalink to this definition">#</a></dt>
+<dd><p>four floats</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_9F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_9F</span></span><a class="headerlink" href="#gpu.GPU_DATA_9F" title="Permalink to this definition">#</a></dt>
+<dd><p>matrix 3x3 in column-major order</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_16F">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_16F</span></span><a class="headerlink" href="#gpu.GPU_DATA_16F" title="Permalink to this definition">#</a></dt>
+<dd><p>matrix 4x4 in column-major order</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DATA_4UB">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DATA_4UB</span></span><a class="headerlink" href="#gpu.GPU_DATA_4UB" title="Permalink to this definition">#</a></dt>
+<dd><p>four unsigned byte</p>
+</dd></dl>
+
+</section>
+<section id="glsl-uniform-types">
+<h3>GLSL Uniform Types<a class="headerlink" href="#glsl-uniform-types" title="Permalink to this heading">#</a></h3>
+<p id="uniform-type">Constants that specify the type of uniform used in a GLSL shader.
+The uniform type determines the data type, origin and method
+of calculation used by Blender to compute the uniform value.</p>
+<p>The calculation of some of the uniforms is based on matrices available in the scene:</p>
+<blockquote>
+<div><span id="mat4-cam-to-world"></span><dl id="mat4-world-to-cam">
+<dt><code class="docutils literal notranslate"><span class="pre">mat4_cam_to_world</span></code></dt><dd><p>Model matrix of the camera. OpenGL 4x4 matrix that converts
+camera local coordinates to world coordinates. In blender this is obtained from the
+‘matrix_world’ attribute of the camera object.</p>
+<p>Some uniform will need the <em>mat4_world_to_cam</em>
+matrix computed as the inverse of this matrix.</p>
+</dd>
+</dl>
+<span id="mat4-object-to-world"></span><dl id="mat4-world-to-object">
+<dt><code class="docutils literal notranslate"><span class="pre">mat4_object_to_world</span></code></dt><dd><p>Model matrix of the object that is being rendered. OpenGL 4x4 matric that converts
+object local coordinates to world coordinates. In blender this is obtained from the
+‘matrix_world’ attribute of the object.</p>
+<p>Some uniform will need the <em>mat4_world_to_object</em> matrix, computed as the inverse of this matrix.</p>
+</dd>
+</dl>
+<span id="mat4-lamp-to-world"></span><dl id="mat4-world-to-lamp">
+<dt><code class="docutils literal notranslate"><span class="pre">mat4_lamp_to_world</span></code></dt><dd><p>Model matrix of the lamp lighting the object. OpenGL 4x4 matrix that converts lamp
+local coordinates to world coordinates. In blender this is obtained from the
+‘matrix_world’ attribute of the lamp object.</p>
+<p>Some uniform will need the <em>mat4_world_to_lamp</em> matrix
+computed as the inverse of this matrix.</p>
+</dd>
+</dl>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any uniforms used for view projections or transformations (object, lamp matrices for eg),
+can only be set once per frame.</p>
+</div>
+<section id="glsl-object-uniforms">
+<h4>GLSL Object Uniforms<a class="headerlink" href="#glsl-object-uniforms" title="Permalink to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Object transformations and color must be set before drawing the object.</p></li>
+<li><p>There is at most one uniform of these types per shader.</p></li>
+</ul>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_VIEWMAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWMAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWMAT" title="Permalink to this definition">#</a></dt>
+<dd><p>A matrix that converts world coordinates to camera coordinates (see <a class="reference internal" href="#mat4-world-to-cam">mat4_world_to_cam</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_MAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_MAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_MAT" title="Permalink to this definition">#</a></dt>
+<dd><p>A matrix that converts object coordinates to world coordinates (see <a class="reference internal" href="#mat4-object-to-world">mat4_object_to_world</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_VIEWIMAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWIMAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWIMAT" title="Permalink to this definition">#</a></dt>
+<dd><p>The uniform is a 4x4 GL matrix that converts coordinates
+in camera space to world coordinates (see <a class="reference internal" href="#mat4-cam-to-world">mat4_cam_to_world</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_IMAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_IMAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_IMAT" title="Permalink to this definition">#</a></dt>
+<dd><p>The uniform is a 4x4 GL matrix that converts world coodinates
+to object coordinates (see <a class="reference internal" href="#mat4-world-to-object">mat4_world_to_object</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_COLOR">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_COLOR</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_COLOR" title="Permalink to this definition">#</a></dt>
+<dd><p>An RGB color + alpha defined at object level.
+Each values between 0.0 and 1.0.</p>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Object.color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE" title="Permalink to this definition">#</a></dt>
+<dd><p>Multiplier for bump-map scaling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="glsl-lamp-uniforms">
+<h4>GLSL Lamp Uniforms<a class="headerlink" href="#glsl-lamp-uniforms" title="Permalink to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is one uniform of that type per lamp lighting the material.</p>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNVEC">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNVEC</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNVEC" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents the direction of light in camera space.</p>
+<dl class="simple">
+<dt>Computed as:</dt><dd><p><a class="reference internal" href="#mat4-world-to-cam">mat4_world_to_cam</a> * (-vec3_lamp_Z_axis)</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The lamp Z axis points to the opposite direction of light.</p></li>
+<li><p>The norm of the vector should be unit length.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNCO">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNCO</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNCO" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents the position of the light in camera space.</p>
+<dl class="simple">
+<dt>Computed as:</dt><dd><p><a class="reference internal" href="#mat4-world-to-cam">mat4_world_to_cam</a> * vec3_lamp_pos</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNIMAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNIMAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNIMAT" title="Permalink to this definition">#</a></dt>
+<dd><p>Matrix that converts vector in camera space to lamp space.</p>
+<dl class="simple">
+<dt>Computed as:</dt><dd><p><a class="reference internal" href="#mat4-world-to-lamp">mat4_world_to_lamp</a> * <a class="reference internal" href="#mat4-cam-to-world">mat4_cam_to_world</a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNPERSMAT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT" title="Permalink to this definition">#</a></dt>
+<dd><p>Matrix that converts a vector in camera space to shadow buffer depth space.</p>
+<dl class="simple">
+<dt>Computed as:</dt><dd><p><a class="reference internal" href="#mat4-perspective-to-depth">mat4_perspective_to_depth</a> * <a class="reference internal" href="#mat4-lamp-to-perspective">mat4_lamp_to_perspective</a> * <a class="reference internal" href="#mat4-world-to-lamp">mat4_world_to_lamp</a> * <a class="reference internal" href="#mat4-cam-to-world">mat4_cam_to_world</a>.</p>
+</dd>
+</dl>
+<p id="mat4-perspective-to-depth"><code class="docutils literal notranslate"><span class="pre">mat4_perspective_to_depth</span></code> is a fixed matrix defined as follow:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.5</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.5</span>
+<span class="mf">0.0</span> <span class="mf">0.5</span> <span class="mf">0.0</span> <span class="mf">0.5</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.5</span> <span class="mf">0.5</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>There is one uniform of that type per lamp casting shadow in the scene.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matrix4x4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNENERGY">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNENERGY</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNENERGY" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Lamp.energy</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DYNCOL">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DYNCOL</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DYNCOL" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Lamp.color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_DISTANCE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_DISTANCE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_DISTANCE" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Lamp.distance</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_ATT1">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_ATT1</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_ATT1" title="Permalink to this definition">#</a></dt>
+<dd><p>See
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.PointLamp.linear_attenuation</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.SpotLamp.linear_attenuation</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_ATT2">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_ATT2</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_ATT2" title="Permalink to this definition">#</a></dt>
+<dd><p>See
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.PointLamp.quadratic_attenuation</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.SpotLamp.quadratic_attenuation</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_SPOTSIZE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSIZE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSIZE" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.SpotLamp.spot_size</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_SPOTBLEND">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_SPOTBLEND</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_SPOTBLEND" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.SpotLamp.spot_blend</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_LAMP_SPOTSCALE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSCALE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSCALE" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents the SpotLamp local scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float2</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="glsl-sampler-uniforms">
+<h4>GLSL Sampler Uniforms<a class="headerlink" href="#glsl-sampler-uniforms" title="Permalink to this heading">#</a></h4>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_SAMPLER_2DBUFFER</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents an internal texture used for certain effect
+(color band, etc).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_SAMPLER_2DIMAGE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents a texture loaded from an image file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_SAMPLER_2DSHADOW</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW" title="Permalink to this definition">#</a></dt>
+<dd><p>Represents a texture loaded from a shadow buffer file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="glsl-mist-uniforms">
+<h4>GLSL Mist Uniforms<a class="headerlink" href="#glsl-mist-uniforms" title="Permalink to this heading">#</a></h4>
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_ENABLE:</span></span></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.WorldMistSettings.use_mist</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float (0 or 1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MIST_START">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_START</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MIST_START" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.WorldMistSettings.start</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.WorldMistSettings.depth</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MIST_DISTANCE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_DISTANCE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MIST_DISTANCE" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.WorldMistSettings.intensity</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MIST_INTENSITY">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_INTENSITY</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MIST_INTENSITY" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MIST_TYPE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_TYPE</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MIST_TYPE" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.WorldMistSettings.falloff</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float (used as an index into the type)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MIST_COLOR">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MIST_COLOR</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MIST_COLOR" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="glsl-world-uniforms">
+<h4>GLSL World Uniforms<a class="headerlink" href="#glsl-world-uniforms" title="Permalink to this heading">#</a></h4>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_HORIZON_COLOR">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_HORIZON_COLOR</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_HORIZON_COLOR" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.World.horizon_color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_AMBIENT_COLOR">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_AMBIENT_COLOR</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_AMBIENT_COLOR" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.World.ambient_color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="glsl-material-uniforms">
+<h4>GLSL Material Uniforms<a class="headerlink" href="#glsl-material-uniforms" title="Permalink to this heading">#</a></h4>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_DIFFRGB">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_DIFFRGB</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_DIFFRGB" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.diffuse_color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_REF">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_REF</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_REF" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.diffuse_intensity</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_SPECRGB">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_SPECRGB</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_SPECRGB" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.specular_color</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_SPEC">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_SPEC</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_SPEC" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.specular_intensity</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_HARD">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_HARD</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_HARD" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.specular_hardness</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_EMIT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_EMIT</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_EMIT" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.emit</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_AMB">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_AMB</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_AMB" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.ambient</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.GPU_DYNAMIC_MAT_ALPHA">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">GPU_DYNAMIC_MAT_ALPHA</span></span><a class="headerlink" href="#gpu.GPU_DYNAMIC_MAT_ALPHA" title="Permalink to this definition">#</a></dt>
+<dd><p>See <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material.alpha</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="glsl-attribute-type">
+<h3>GLSL Attribute Type<a class="headerlink" href="#glsl-attribute-type" title="Permalink to this heading">#</a></h3>
+<p id="attribute-type">Type of the vertex attribute used in the GLSL shader. Determines the mesh custom data
+layer that contains the vertex attribute.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.CD_MTFACE">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">CD_MTFACE</span></span><a class="headerlink" href="#gpu.CD_MTFACE" title="Permalink to this definition">#</a></dt>
+<dd><p>Vertex attribute is a UV Map. Data type is vector of 2 float.</p>
+<p>There can be more than one attribute of that type, they are differenciated by name.
+In blender, you can retrieve the attribute data with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">uv_layers</span><span class="p">[</span><span class="n">attribute</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.CD_MCOL">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">CD_MCOL</span></span><a class="headerlink" href="#gpu.CD_MCOL" title="Permalink to this definition">#</a></dt>
+<dd><p>Vertex attribute is color layer. Data type is vector 4 unsigned byte (RGBA).</p>
+<p>There can be more than one attribute of that type, they are differenciated by name.
+In blender you can retrieve the attribute data with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">vertex_colors</span><span class="p">[</span><span class="n">attribute</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.CD_ORCO">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">CD_ORCO</span></span><a class="headerlink" href="#gpu.CD_ORCO" title="Permalink to this definition">#</a></dt>
+<dd><p>Vertex attribute is original coordinates. Data type is vector 3 float.</p>
+<p>There can be only 1 attribute of that type per shader.
+In blender you can retrieve the attribute data with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="gpu.CD_TANGENT">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">CD_TANGENT</span></span><a class="headerlink" href="#gpu.CD_TANGENT" title="Permalink to this definition">#</a></dt>
+<dd><p>Vertex attribute is the tangent vector. Data type is vector 4 float.</p>
+<p>There can be only 1 attribute of that type per shader.
+There is currently no way to retrieve this attribute data via the RNA API but a standalone
+C function to compute the tangent layer from the other layers can be obtained from
+blender.org.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<span class="target" id="export-shader"></span><dl class="py function">
+<dt class="sig sig-object py" id="gpu.export_shader">
+<span class="sig-prename descclassname"><span class="pre">gpu.</span></span><span class="sig-name descname"><span class="pre">export_shader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gpu.export_shader" title="Permalink to this definition">#</a></dt>
+<dd><p>Extracts the GLSL shader producing the visual effect of material in scene for the purpose of
+reusing the shader in an external engine.</p>
+<p>This function is meant to be used in material exporter
+so that the GLSL shader can be exported entirely.</p>
+<p>The return value is a dictionary containing the
+shader source code and all associated data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scene</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Scene</span></code>) – the scene in which the material in rendered.</p></li>
+<li><p><strong>material</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Material</span></code>) – the material that you want to export the GLSL shader</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the shader source code and all associated data in a dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary</p>
+</dd>
+</dl>
+<p>The dictionary contains the following elements:</p>
+<ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;fragment&quot;]</span></code>: string</dt><dd><p>fragment shader source code.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;vertex&quot;]</span></code>: string</dt><dd><p>vertex shader source code.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;uniforms&quot;]</span></code>: sequence</dt><dd><p>list of uniforms used in fragment shader, can be empty list. Each element of the
+sequence is a dictionary with the following elements:</p>
+<ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;varname&quot;]</span></code>: string</dt><dd><p>name of the uniform in the fragment shader. Always of the form ‘unf&lt;number&gt;’.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;datatype&quot;]</span></code>: integer</dt><dd><p>data type of the uniform variable. Can be one of the following:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_1I" title="gpu.GPU_DATA_1I"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_1I</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniform1i</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_1F" title="gpu.GPU_DATA_1F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_1F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniform1fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_2F" title="gpu.GPU_DATA_2F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_2F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniform2fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_3F" title="gpu.GPU_DATA_3F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_3F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniform3fv</span></code></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_4F" title="gpu.GPU_DATA_4F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_4F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniform4fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_9F" title="gpu.GPU_DATA_9F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_9F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniformMatrix3fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_16F" title="gpu.GPU_DATA_16F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_16F</span></code></a> : use <code class="docutils literal notranslate"><span class="pre">glUniformMatrix4fv</span></code></p></li>
+</ul>
+</td></tr></table>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;type&quot;]</span></code>: integer</dt><dd><p>type of uniform, determines the origin and method of calculation. See <a class="reference internal" href="#uniform-type">uniform-type</a>.
+Depending on the type, more elements will be be present.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;lamp&quot;]</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Object</span></code></dt><dd><p>Reference to the lamp object from which the uniforms value are extracted.
+Set for the following uniforms types:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNVEC" title="gpu.GPU_DYNAMIC_LAMP_DYNVEC"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNVEC</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNCO" title="gpu.GPU_DYNAMIC_LAMP_DYNCO"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNCO</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNIMAT" title="gpu.GPU_DYNAMIC_LAMP_DYNIMAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNIMAT</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT" title="gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT</span></code></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNENERGY" title="gpu.GPU_DYNAMIC_LAMP_DYNENERGY"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNENERGY</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNCOL" title="gpu.GPU_DYNAMIC_LAMP_DYNCOL"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNCOL</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW" title="gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW</span></code></a></p></li>
+</ul>
+</td></tr></table>
+<p>Notes:</p>
+<ul>
+<li><p>The uniforms
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNVEC" title="gpu.GPU_DYNAMIC_LAMP_DYNVEC"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNVEC</span></code></a>,
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNCO" title="gpu.GPU_DYNAMIC_LAMP_DYNCO"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNCO</span></code></a>,
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNIMAT" title="gpu.GPU_DYNAMIC_LAMP_DYNIMAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNIMAT</span></code></a> and
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT" title="gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT</span></code></a>
+refer to the lamp object position and orientation,
+both of can be derived from the object world matrix:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obmat</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;lamp&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">matrix_world</span>
+</pre></div>
+</div>
+<p>where obmat is the <a class="reference internal" href="#mat4-lamp-to-world">mat4_lamp_to_world</a> matrix of the lamp as a 2 dimensional array,
+the lamp world location location is in <code class="docutils literal notranslate"><span class="pre">obmat[3]</span></code>.</p>
+</div></blockquote>
+</li>
+<li><p>The uniform types
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNENERGY" title="gpu.GPU_DYNAMIC_LAMP_DYNENERGY"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNENERGY</span></code></a> and
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNCOL" title="gpu.GPU_DYNAMIC_LAMP_DYNCOL"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNCOL</span></code></a>
+refer to the lamp data bloc that you get from:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">la</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;lamp&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>from which you get <code class="docutils literal notranslate"><span class="pre">lamp.energy</span></code> and <code class="docutils literal notranslate"><span class="pre">lamp.color</span></code></p>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Lamp duplication is not supported: if you have duplicated lamps in your scene</dt><dd><p>(i.e. lamp that are instantiated by dupligroup, etc), this element will only
+give you a reference to the orignal lamp and you will not know which instance
+of the lamp it is refering too. You can still handle that case in the exporter
+by distributing the uniforms amongst the duplicated lamps.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;image&quot;]</span></code>: <code class="xref py py-class docutils literal notranslate"><span class="pre">bpy.types.Image</span></code></dt><dd><p>Reference to the image databloc.
+Set for uniform type
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE" title="gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE</span></code></a>.
+You can get the image data from:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># full path to image file</span>
+<span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filepath</span>
+<span class="c1"># image size as a 2-dimensional array of int</span>
+<span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;texnumber&quot;]</span></code>: integer</dt><dd><p>Channel number to which the texture is bound when drawing the object.
+Set for uniform types
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER" title="gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER</span></code></a>,
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE" title="gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE</span></code></a> and
+<a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW" title="gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW</span></code></a>.</p>
+<p>This is provided for information only: when reusing the shader outside blencer,
+you are free to assign the textures to the channel of your choice and to pass
+that number channel to the GPU in the uniform.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;texpixels&quot;]</span></code>: byte array</dt><dd><p>texture data for uniform type <a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER" title="gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER</span></code></a>.
+Although the corresponding uniform is a 2D sampler,
+the texture is always a 1D texture of n x 1 pixel.
+The texture size n is provided in [“texsize”] element.
+These texture are only used for computer generated texture (colorband, etc).
+The texture data is provided so that you can make a real image out of it in the exporter.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;texsize&quot;]</span></code>: integer</dt><dd><p>horizontal size of texture for uniform type <a class="reference internal" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER" title="gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER</span></code></a>.
+The texture data is in [“texpixels”].</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;attributes&quot;]</span></code>: sequence</dt><dd><p>list of attributes used in vertex shader, can be empty. Blender doesn’t use
+standard attributes except for vertex position and normal. All other vertex
+attributes must be passed using the generic <code class="docutils literal notranslate"><span class="pre">glVertexAttrib</span></code> functions.
+The attribute data can be found in the derived mesh custom data using RNA.
+Each element of the sequence is a dictionary containing the following elements:</p>
+<ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;varname&quot;]</span></code>: string</dt><dd><p>name of the uniform in the vertex shader. Always of the form ‘att&lt;number&gt;’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;datatype&quot;]</span></code>: integer</dt><dd><p>data type of vertex attribute, can be one of the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_2F" title="gpu.GPU_DATA_2F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_2F</span></code></a>: use <code class="docutils literal notranslate"><span class="pre">glVertexAttrib2fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_3F" title="gpu.GPU_DATA_3F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_3F</span></code></a>: use <code class="docutils literal notranslate"><span class="pre">glVertexAttrib3fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_4F" title="gpu.GPU_DATA_4F"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_4F</span></code></a>: use <code class="docutils literal notranslate"><span class="pre">glVertexAttrib4fv</span></code></p></li>
+<li><p><a class="reference internal" href="#gpu.GPU_DATA_4UB" title="gpu.GPU_DATA_4UB"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DATA_4UB</span></code></a>: use <code class="docutils literal notranslate"><span class="pre">glVertexAttrib4ubv</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;number&quot;]</span></code>: integer</dt><dd><p>Generic attribute number. This is provided for information only.
+Blender doesn’t use <code class="docutils literal notranslate"><span class="pre">glBindAttribLocation</span></code> to place generic attributes at specific location,
+it lets the shader compiler place the attributes automatically and query the
+placement with <code class="docutils literal notranslate"><span class="pre">glGetAttribLocation</span></code>.
+The result of this placement is returned in this element.</p>
+<p>When using this shader in a render engine, you should either use
+<code class="docutils literal notranslate"><span class="pre">glBindAttribLocation</span></code> to force the attribute at this location or use
+<code class="docutils literal notranslate"><span class="pre">glGetAttribLocation</span></code> to get the placement chosen by the compiler of your GPU.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;type&quot;]</span></code>: integer</dt><dd><p>type of the mesh custom data from which the vertex attribute is loaded.
+See <a class="reference internal" href="#attribute-type">attribute-type</a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">[&quot;name&quot;]</span></code>: string or integer</dt><dd><p>custom data layer name, used for attribute type <a class="reference internal" href="#gpu.CD_MTFACE" title="gpu.CD_MTFACE"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.CD_MTFACE</span></code></a> and <a class="reference internal" href="#gpu.CD_MCOL" title="gpu.CD_MCOL"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.CD_MCOL</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gpu</span>
+<span class="c1"># get GLSL shader of material Mat.001 in scene Scene.001</span>
+<span class="n">scene</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">scenes</span><span class="p">[</span><span class="s2">&quot;Scene.001&quot;</span><span class="p">]</span>
+<span class="n">material</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">materials</span><span class="p">[</span><span class="s2">&quot;Mat.001&quot;</span><span class="p">]</span>
+<span class="n">shader</span> <span class="o">=</span> <span class="n">gpu</span><span class="o">.</span><span class="n">export_shader</span><span class="p">(</span><span class="n">scene</span><span class="p">,</span><span class="n">material</span><span class="p">)</span>
+<span class="c1"># scan the uniform list and find the images used in the shader</span>
+<span class="k">for</span> <span class="n">uniform</span> <span class="ow">in</span> <span class="n">shader</span><span class="p">[</span><span class="s2">&quot;uniforms&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">gpu</span><span class="o">.</span><span class="n">GPU_DYNAMIC_SAMPLER_2DIMAGE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;uniform </span><span class="si">{0}</span><span class="s2"> is using image </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;varname&quot;</span><span class="p">],</span> <span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">filepath</span><span class="p">))</span>
+<span class="c1"># scan the attribute list and find the UV Map used in the shader</span>
+<span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="n">shader</span><span class="p">[</span><span class="s2">&quot;attributes&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">attribute</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">gpu</span><span class="o">.</span><span class="n">CD_MTFACE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;attribute </span><span class="si">{0}</span><span class="s2"> is using UV Map </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute</span><span class="p">[</span><span class="s2">&quot;varname&quot;</span><span class="p">],</span> <span class="n">attribute</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h2>
+<ol class="arabic" id="mat4-lamp-to-perspective">
+<li><p>Calculation of the <code class="docutils literal notranslate"><span class="pre">mat4_lamp_to_perspective</span></code> matrix for a spot lamp.</p>
+<p>The following pseudo code shows how the <code class="docutils literal notranslate"><span class="pre">mat4_lamp_to_perspective</span></code> matrix is computed
+in blender for uniforms of <a class="reference internal" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT" title="gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT"><code class="xref py py-data docutils literal notranslate"><span class="pre">gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT</span></code></a> type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the lamp datablock with:</span>
+<span class="n">lamp</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">uniform</span><span class="p">[</span><span class="s2">&quot;lamp&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">data</span>
+
+<span class="c1"># Compute the projection matrix:</span>
+<span class="c1">#  You will need these lamp attributes:</span>
+<span class="c1">#  lamp.clipsta : near clip plane in world unit</span>
+<span class="c1">#  lamp.clipend : far clip plane in world unit</span>
+<span class="c1">#  lamp.spotsize : angle in degree of the spot light</span>
+
+<span class="c1"># The size of the projection plane is computed with the usual formula:</span>
+<span class="n">wsize</span> <span class="o">=</span> <span class="n">lamp</span><span class="o">.</span><span class="n">clista</span> <span class="o">*</span> <span class="n">tan</span><span class="p">(</span><span class="n">lamp</span><span class="o">.</span><span class="n">spotsize</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># And the projection matrix:</span>
+<span class="n">mat4_lamp_to_perspective</span> <span class="o">=</span> <span class="n">glFrustum</span><span class="p">(</span><span class="o">-</span><span class="n">wsize</span><span class="p">,</span> <span class="n">wsize</span><span class="p">,</span> <span class="o">-</span><span class="n">wsize</span><span class="p">,</span> <span class="n">wsize</span><span class="p">,</span> <span class="n">lamp</span><span class="o">.</span><span class="n">clista</span><span class="p">,</span> <span class="n">lamp</span><span class="o">.</span><span class="n">clipend</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Creation of the shadow map for a spot lamp.</p>
+<p>The shadow map is the depth buffer of a render performed by placing the camera at the
+spot light position. The size of the shadow map is given by the attribute <code class="docutils literal notranslate"><span class="pre">lamp.bufsize</span></code>:
+shadow map size in pixel, same size in both dimensions.</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="blf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Font Drawing (blf)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gpu.offscreen.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GPU Off-Screen Buffer (gpu.offscreen)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-data-type">GLSL Data Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_1I"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_1I</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_1F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_1F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_2F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_2F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_3F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_3F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_4F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_4F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_9F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_9F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_16F"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_16F</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DATA_4UB"><code class="docutils literal notranslate"><span class="pre">GPU_DATA_4UB</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-uniform-types">GLSL Uniform Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-object-uniforms">GLSL Object Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_MAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_MAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_VIEWIMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_VIEWIMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_IMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_IMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_COLOR</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_OBJECT_AUTOBUMPSCALE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-lamp-uniforms">GLSL Lamp Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNVEC"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNVEC</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNCO"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNCO</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNIMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNIMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNPERSMAT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNPERSMAT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNENERGY"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNENERGY</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DYNCOL"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DYNCOL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_DISTANCE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_DISTANCE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_ATT1"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_ATT1</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_ATT2"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_ATT2</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSIZE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSIZE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTBLEND"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTBLEND</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_LAMP_SPOTSCALE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_LAMP_SPOTSCALE</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-sampler-uniforms">GLSL Sampler Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DBUFFER"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DBUFFER</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DIMAGE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DIMAGE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_SAMPLER_2DSHADOW"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_SAMPLER_2DSHADOW</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-mist-uniforms">GLSL Mist Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_START"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_START</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_DISTANCE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_DISTANCE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_INTENSITY"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_INTENSITY</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_TYPE"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_TYPE</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MIST_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MIST_COLOR</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-world-uniforms">GLSL World Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_HORIZON_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_HORIZON_COLOR</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_AMBIENT_COLOR"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_AMBIENT_COLOR</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-material-uniforms">GLSL Material Uniforms</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_DIFFRGB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_DIFFRGB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_REF"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_REF</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_SPECRGB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_SPECRGB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_SPEC"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_SPEC</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_HARD"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_HARD</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_EMIT"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_EMIT</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_AMB"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_AMB</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.GPU_DYNAMIC_MAT_ALPHA"><code class="docutils literal notranslate"><span class="pre">GPU_DYNAMIC_MAT_ALPHA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glsl-attribute-type">GLSL Attribute Type</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_MTFACE"><code class="docutils literal notranslate"><span class="pre">CD_MTFACE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_MCOL"><code class="docutils literal notranslate"><span class="pre">CD_MCOL</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_ORCO"><code class="docutils literal notranslate"><span class="pre">CD_ORCO</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.CD_TANGENT"><code class="docutils literal notranslate"><span class="pre">CD_TANGENT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu.export_shader"><code class="docutils literal notranslate"><span class="pre">export_shader()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes">Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Range Engine
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright This page is licensed under a CC-BY-SA 4.0 Int. License..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

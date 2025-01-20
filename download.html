@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/header_footer.css"/>
     <link rel="stylesheet" href="/css/rangecss.css"/>
     <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
@@ -25,8 +26,6 @@
           $("#footer").load("../../footer.html");
       });
     </script>
-    <script src="/js/responsivenav.js" defer></script>
-    <script src="/js/headercolor.js"></script>
   </head>
   <body>
     <div id="loading">
@@ -40,7 +39,7 @@
       <script src="/js/parallax.js"></script>
       <div class="apresentacao" style="font-family:Roboto Condensed;background-color:transparent;align-items:center;">
         <div class="sobreoprojeto">
-          <h2 class="titsec" style="font-size:240%;letter-spacing:-3px;text-align:center;text-shadow:0px 0px 40px #00000063;">RANGE ENGINE 2.0 IS UNDER DEVELOPMENT!</h2>
+          <h2 class="titsec" style="font-size:240%;letter-spacing:-3px;text-align:center;text-shadow:0px 0px 40px #00000063;">RANGE ENGINE 1.6 IS AVAILABLE ON PATREON</h2><!--RANGE ENGINE 2.0 IS UNDER DEVELOPMENT!-->
           <p class="whatsxbge" style="font-size:14px;text-shadow:0px 0px 40px #00000063;">Support the project on Patreon to get early access releases, exclusive content, products<br>
           and make Range Engine keep updating bringing new great features</p>
           <div class="downnabout" style="font-family: Roboto Condensed;">
@@ -68,7 +67,7 @@
             </ul>
           </div>
         </div>
-        <img class="dprelpatr" style="margin-left:25px;" src="/img/RangeEngine20Showcase.png" alt="Range Engine 2.0 Showcase">
+        <img class="dprelpatr" style="margin-left:25px;" src="/img/RangeEngine16Splash.png" alt="Range Engine 1.6 Splash"><!--src="/img/RangeEngine20Showcase.png" alt="Range Engine 2.0 Showcase">-->
       </div>
     </section>
     <article class="artcdown">
@@ -81,7 +80,7 @@
             <p class="whatsxbge"><b>Download Range Engine 1.5a now</b> and experience new features such as the new Realtime Viewport Nodes, Foliage Shader, Dynamic Sky Shader, ORM Textures<br>
             Take a look at the <a target="_blank" style="text-decoration:underline;color:#ff2727;text-decoration-color:#ff27279a;" href="https://github.com/rangeengine/Range-Engine-Wiki/wiki/Release-notes-version-1.5a">Release Notes</a></p>
             <!--DOWNLOAD DROPDOWN-->
-            <ul style="padding:0;margin:0px;">
+            <ul style="padding:0;margin:0px;" translate="no">
               <div class="splash-links">
                 <div class="spl-link-button" id="down-dpd-bt">
                   <div class="spl-link-ico" id="spl-link-button-small">
@@ -105,7 +104,7 @@
               </div>
             </ul>
             <!---->
-            <li class="downabout" id="extbts"><a class="smalllink" target="_blank" href="https://github.com/rangeengine/rangeengine.github.io/releases/download/RangeEngine1.5a/RangeEngine1.5a_SourceCode.zip">Source Code</a></li>
+            <li class="downabout" id="extbts" translate="no"><a class="smalllink" target="_blank" href="https://github.com/rangeengine/rangeengine.github.io/releases/download/RangeEngine1.5a/RangeEngine1.5a_SourceCode.zip">Source Code</a></li>
           </div>
           <img class="funcschc" src="/img/RangeEngine15aSplash.png" alt="Range Engine 1.5a Splash">
         </div>
@@ -125,8 +124,9 @@
               <li><b>OpenGL:</b> 2.1</li>
               <li><b>Storage:</b> 1 GB</li>
             </ul>
-            <div style="padding:20px 0px 20px 1px;margin:0px 0px 0px 10px;background-color:rgb(77, 77, 77);"></div>
-            <ul style="text-align:left;padding:0px 0px 0px 10px;flex-shrink:0;">
+            <style>.reqbar{padding:20px 1px 20px 1px;margin:0px 10px 0px 10px;background-color:rgb(77, 77, 77);}@media (max-width: 850px){.reqbar{padding:1px 20px 1px 20px;}}</style>
+            <div class="reqbar"></div>
+            <ul style="text-align:left">
               <p>Recommended:</p>
               <li><b>OS:</b> Windows 10/11 x64 │ Linux x64</li>
               <li><b>Processor:</b> i3-2100 3.10 GHz</li>
@@ -178,7 +178,7 @@
               <p>Stephen Ddungu</p>
               <p>Chaosfuchs</p>
               <p>Fumangy</p>
-              <p>Naut Play</p>
+              <p><br></p>
               <p><br></p>
               <p><br></p>
               <p><br></p>
@@ -193,7 +193,6 @@
           </div>
           <div class="patr-artc">
             <div class="patr-mural-artc" style="background-color:rgb(128, 173, 162);">
-              <p>Eldriel De Astora</p>
               <p>K9Kraken</p>
               <p>Markus Schatten</p>
               <p>Okhey &ampgt</p>
@@ -290,5 +289,9 @@
       })
     </script>
     <!---->
+    <script>
+      const icons = document.querySelectorAll('i');
+      icons.forEach(icon => { icon.setAttribute('translate', 'no'); });
+    </script>
   </body>
 </html>

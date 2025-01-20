@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Range Engine</title>
+    <meta name="description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
+    <meta name="theme-color" content="#f00000">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Range Engine"/>
+    <meta property="og:description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
+    <meta property="og:site_name" content="Range Engine"/>
+    <meta property="og:image" content="https://rangeengine.tech//img/ogp_splash.jpg"/>
+	<meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/rangecss.css"/>
+    <link rel="stylesheet" href="/css/header_footer.css"/>
+    <link rel="stylesheet" href="/css/sliders.css"/>
+    <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+      $(function(){
+          $("#header").load("../../header.html");
+          $("#footer").load("../../footer.html");
+      });
+    </script>
+    <style>
+        canvas {
+          border: 1px solid black;
+          background: radial-gradient(#4b4b4b, #222);
+          border-radius: 5px;
+          width: 512px;
+          height: 512px;
+        }
+        .dropzone {
+          width: 100px;
+          height: 100px;
+          border: 2px dashed #ccc;
+          text-align: center;
+          line-height: 100px;
+          color: #ccc;
+          margin: 10px;
+          background-size: cover;
+          background-position: center;
+        }
+        .dropzone.dragover {
+          border-color: #000;
+          color: #000;
+        }
+        #downloadBtn, #clearBtn{
+          cursor: pointer;
+          padding: 8% 4%;
+          margin: 2% 10px;
+          border-radius: 2px;
+          font-size: 16px;
+          border: none;
+          font-family: Roboto Condensed;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+    <article>
+        <div class="splashhome" style="margin: 80px 0 0 0;">
+            <h1 class="splashtitsec">ORM Texture Generator</h1>
+        </div>
+        <div style="display:flex;justify-content:center;">
+          <div style="display:block;justify-content:center;">
+            <div class="dropzone" id="Occlusion">Occlusion</div>
+            <div class="dropzone" id="Roughness">Roughness</div>
+            <div class="dropzone" id="Metallic">Metallic</div>
+            <div style="display:grid;">
+              <button id="downloadBtn"><i class="material-symbols-outlined">Download</i> Download</button>
+              <button id="clearBtn"><i class="material-symbols-outlined">mop</i> Clean</button>
+            </div>
+          </div>
+          <canvas id="ormCanvas" width="512" height="512"></canvas>
+        </div>
+        <script src="/js/orm.js"></script>
+    </article>
+    <div id="footer"></div>
+  </body>
+</html>

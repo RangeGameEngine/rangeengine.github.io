@@ -1,36 +1,83 @@
+body{
+	font-family: Rubik, Arial, Helvetica, sans-serif;
+}
+
+/* NEW HEADER */
+.header-store{
+	position: fixed;
+	width: 340px;
+	height: 100%;
+	background-color: #131313;
+	z-index: 5;
+}
+
 /* HEADER */
-#searchbar{
-	padding: /*6px 90px 6px 6px*/6px 800px 6px 10px;
-	margin: 15px 20px 15px 20px;
+.search-article{
+	position: fixed;
+	width: 84%;
+	background-color: #131313;
+	z-index: 4;
+}
+#searchBar{
+	width: 94%;
+	padding: 5px 0 5px 5px;
+	margin: 15px 0;
 	border: none;
 	/*margin-top: 8px;
 	margin-right: 5px;*/
-	border-radius: 2px;
 	font-size: 15px;
 	background-color: #393939;
 	color: #9e9e9e;
 	outline-style: solid;
 	outline-color: #434343eb;
 	outline-width: 1px;
-	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.18);
-	font-family: Roboto, Arial, Helvetica, sans-serif;
+	font-family: Rubik, Arial, Helvetica, sans-serif;
 }
 .storetags{
-    cursor: pointer;
-    font-size: 14px;
-    padding: 5px 10px;
-    color: rgb(196, 196, 196);
-    transition: all 0.15s ease-in-out;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 5px 10px;
+	color: rgb(196, 196, 196);
+	background-color: #222;
+	border-radius: 20px;
+	border: 1px solid #3c3c3c;
+	display: inline-block;
+	margin: 2px 0;
+	transition: all 0.15s ease-in-out;
 }
 .storetags:hover{
-    font-size: 15px;
+	font-size: 14px;
     color: white;
+	background-color: #444;
     transition: all 0.15s ease-in-out;
+}
+#maxPrice{
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
+	width: 25%;
+	margin: 0;
+	border: none;
+	font-size: 15px;
+	background-color: #393939;
+	color: #9e9e9e;
+	outline-style: solid;
+	outline-color: #434343eb;
+	outline-width: 1px;
+	font-family: Rubik, Arial, Helvetica, sans-serif;
 }
 
 /* ARTICLE */
+.store-article{
+	margin: 0 0 0 16%;
+	padding: 0;
+	background-color: #00000000;
+}
+
 #storebody{
+	display: grid;
+	background-image: url('/img/posterback.jpg');
 	background-color: rgb(62, 62, 62);
+	background-size: cover;
 }
 #storesec{
 	font-family: Roboto Condensed, Arial, Helvetica, sans-serif;
@@ -44,6 +91,11 @@
 	padding-bottom: 4%;
 	backdrop-filter: blur(5px);
 }
+.storeItems{
+	padding-top: 40px;
+	background-color: rgb(08, 08, 08, 0.95);
+	backdrop-filter: blur(5px);
+}
 /*.no-results{
 	margin-bottom: 20px;
 	background-color: rgb(94, 18, 18);
@@ -51,37 +103,33 @@
 	padding: 10px 0 10px 0;
 }*/
 .item-pdt{
-	border-radius: 5px;
-	margin-left: 30px;
-	margin-right: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
 	margin-bottom: 30px;
-	max-width: 400px;
+	max-width: 340px;
 	max-height: 400px;
 	outline-style: none;
 	outline-color: #5b5b5b;
 	transition: all 0.15s ease-in-out;
 }
-.item-pdt:hover{
-	outline-style: solid;
-	outline-width: 2px;
-	outline-color: #5b5b5b;
-	transition: all 0.15s ease-in-out;
-}
 .img-pdt{
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
 	max-width: 100%;
 	text-decoration: none;
 	margin-bottom: -7px;
 }
 .descbox-pdt{
 	cursor: default;
-	transition: all 0.2s ease-in-out;
-	background-color:rgba(44, 44, 44, 0.822);
+	transition: all 0.15s ease-in-out;
+	background-color:#2c2c2c;
 	padding: 10px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	box-shadow: 4px 4px 8px 1px rgba(0, 0, 0, 0.18);
+	z-index: 3;
+  	position: sticky;
+}
+.item-pdt:hover{
+	cursor: pointer;
+}
+.item-pdt:hover .descbox-pdt{
+	box-shadow: 0 -2.5px 0 0.2px red;
 }
 .name-pdt{
 	font-size: 14px;
@@ -91,10 +139,21 @@
     color: rgb(175, 175, 175);
 	font-size: 13px;
 }
+.price-pdt{
+	position: absolute;
+	font-size: 13px;
+	top: 5px;
+	left: 299px;
+	font-weight: 600;
+	color: #0c0;
+}
+/* END STORE PAGE */
 
-/*PRODUCT PAGE*/
+
+/* PRODUCT PAGE */
+
 .pdt-iframe{
-	border-radius: 10px;
+	border-radius: 5px;
 	width: 90%;
 	height: 79.4%;
 	left: 5%;
@@ -109,14 +168,14 @@
 	height: 100vh;
 	margin: 0;
 	display: flex;
-	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.25);
 }
 .pdtpage-img{
 	text-align: left;
 	width: 50%;
 }
 .pdtpage-img img{
-	border-radius: 10px;
+	border-radius: 5px;
 	width: 99%;
 	box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.1);
 	margin: 4px 0 0 4px;
@@ -146,7 +205,7 @@
 }
 #pdt-artc{
 	background-color: #3e3e3e;
-	border-radius: 10px;
+	border-radius: 5px;
 	margin: 4px;
 	padding: 5px;
 	box-shadow: 2px 2px 9px 1px rgba(0, 0, 0, 0.1);

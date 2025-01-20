@@ -1,9 +1,23 @@
-const toggleButton = document.getElementsByClassName('togglebutton')[0]
-const navbarLinks = document.getElementsByClassName('headerlinks')[0]
-const toggleButtoon = document.getElementsByClassName('header')[0]
+const toggleButton = document.querySelector('.togglebutton');
+const navbarLinks = document.querySelector('.headerlinks');
+let isActive = false;
+
+$(document).on('scroll', () => {
+  if ($(window).scrollTop() > 150) {
+    $('.header').addClass('activeh');
+  }
+  else if ($(window).scrollTop() <= 150 && !isActive) {
+    $('.header').removeClass('activeh');
+  }
+});
 
 toggleButton.addEventListener('click', () => {
-  navbarLinks.classList.toggle('active')
-  toggleButton.classList.toggle('active')
-  $('.header').addClass('activeh');
-})
+  isActive = !isActive;
+  navbarLinks.classList.toggle('active');
+  toggleButton.classList.toggle('active');
+  if (isActive) {
+    $('.header').addClass('activeh');
+  } else if ($(window).scrollTop() <= 80) {
+    $('.header').removeClass('activeh');
+  }
+});

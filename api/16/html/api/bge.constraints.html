@@ -1,0 +1,1426 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Physics Constraints (bge.constraints) &#8212; Range Engine Manual latest documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/bge.constraints';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application Data (bge.app)" href="bge.app.html" />
+    <link rel="prev" title="Game Keys (bge.events)" href="bge.events.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/range_logo.png" class="logo__image only-dark" alt="Range Engine Manual latest documentation - Home"/>
+    <script>document.write(`<img src="../_static/range_logo.png" class="logo__image only-light" alt="Range Engine Manual latest documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/introduction/index.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/briefing.html">Briefing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/deeper_look.html">A Deeper Look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/introduction/compatibility_notes.html">Compatibility Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/getting_started/linked_libraries.html">Using Linked Libraries In Game</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/introducing_python/index.html">Introducing Python</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/move_object.html">Moving A Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/play_animation.html">Playing An Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/group_instances.html">Dealing With Group Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/introducing_python/python_component.html">Setting Up A Python Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/tutorials/range_armor/index.html">Range Armor</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/tutorials/range_armor/exporting_your_project.html">Exporting your Project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/editors/index.html">Editors</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/properties/index.html">Properties Editor</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/render.html">Render</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/render_stereo.html">Stereo Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/world.html">World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/object.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/constraints.html">Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/texture.html">Texture</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../manual/editors/properties/physics.html">Physics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_no_collision.html">No Collision Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_static.html">Static Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_dynamic.html">Dynamic Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_rigid_body.html">Rigid Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_soft_body.html">Soft Body Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_occluder.html">Occlude Object Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_sensor.html">Sensor Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_navigation_mesh.html">Navigation Mesh Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_character.html">Character Physics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../manual/editors/properties/physics_vehicle.html">Vehicle Controller Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/materials.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/properties/data.html">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/editors/logic/index.html">Logic Editor</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/properties.html">Properties Panel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/logic_bricks.html">Logic Bricks Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/editors/logic/components.html">Components Panel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/datablocks/index.html">Datablocks</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/group.html">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/datablocks/object.html">Object</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/mesh.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/armature.html">Armature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/empty.html">Empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/datablocks/lamp.html">Lamp</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/text.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/image.html">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/library.html">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/sound.html">Sound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/action.html">Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/scene.html">Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/texture.html">Texture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/datablocks/world.html">World</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/logic/index.html">Logic</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/introduction.html">Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/sensors/index.html">Sensors</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/editing.html">Sensor Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/actuator.html">Actuator Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/always.html">Always Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/armature.html">Armature Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/collision.html">Collision Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/delay.html">Delay Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/joystick.html">Joystick Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/keyboard.html">Keyboard Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/message.html">Message Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/mouse.html">Mouse Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/near.html">Near Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/property.html">Property Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/radar.html">Radar Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/random.html">Random Sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/sensors/types/ray.html">Ray Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/controllers/index.html">Controllers</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/editing.html">Controller Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/and.html">AND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/or.html">OR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nand.html">NAND Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/nor.html">NOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xor.html">XOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/xnor.html">XNOR Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/expression.html">Expression Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/controllers/types/python.html">Python Controller</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manual/logic/actuators/index.html">Actuators</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/editing.html">Actuator Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/armature.html">Armature Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/action.html">Action Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/camera.html">Camera Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/constraint.html">Constraints Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/edit_object.html">Edit Object Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/filter_2d.html">Filter 2D Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/game.html">Game Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/message.html">Message Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/mouse.html">Mouse Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/motion.html">Motion Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/parent.html">Parent Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/property.html">Property Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/random.html">Random Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/scene.html">Scene Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/steering.html">Steering Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/sound.html">Sound Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/state.html">State Actuator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manual/logic/actuators/types/visibility.html">Visibility Actuator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/properties.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/logic/states.html">States</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/release/index.html">Release</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/licensing.html">Licensing of Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/performance.html">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/blender_player.html">Standalone Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/release/release_procedure.html">Release Procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../manual/about/index.html">About</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/introduction.html">Introduction to the Range Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/license.html">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manual/about/whats_new.html">What’s New</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="bge.html">Range Game Engine Modules (bge)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="bge.types.html">Game Types (bge.types)</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ActionActuator.html">BL_ActionActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureActuator.html">BL_ArmatureActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureBone.html">BL_ArmatureBone(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureChannel.html">BL_ArmatureChannel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureConstraint.html">BL_ArmatureConstraint(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_ArmatureObject.html">BL_ArmatureObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Shader.html">BL_Shader(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.BL_Texture.html">BL_Texture(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_ListValue.html">EXP_ListValue(EXP_PropValue)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PropValue.html">EXP_PropValue(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_PyObjectPlus.html">EXP_PyObjectPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.EXP_Value.html">EXP_Value(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilter.html">KX_2DFilter(BL_Shader)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterManager.html">KX_2DFilterManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_2DFilterOffScreen.html">KX_2DFilterOffScreen(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEvent.html">KX_AnimationEvent()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_AnimationEventsManager.html">KX_AnimationEventsManager()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ArmatureSensor.html">KX_ArmatureSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BatchGroup.html">KX_BatchGroup(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BlenderMaterial.html">KX_BlenderMaterial(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_BoundingBox.html">KX_BoundingBox(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Camera.html">KX_Camera(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CameraActuator.html">KX_CameraActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CharacterWrapper.html">KX_CharacterWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionContactPoint.html">KX_CollisionContactPoint(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CollisionSensor.html">KX_CollisionSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintActuator.html">KX_ConstraintActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ConstraintWrapper.html">KX_ConstraintWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_CubeMap.html">KX_CubeMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_FontObject.html">KX_FontObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameActuator.html">KX_GameActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_GameObject.html">KX_GameObject(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LibLoadStatus.html">KX_LibLoadStatus(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LightObject.html">KX_LightObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodLevel.html">KX_LodLevel(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_LodManager.html">KX_LodManager(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Mesh.html">KX_Mesh(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseActuator.html">KX_MouseActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MouseFocusSensor.html">KX_MouseFocusSensor(SCA_MouseSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_MovementSensor.html">KX_MovementSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NavMeshObject.html">KX_NavMeshObject(KX_GameObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NearSensor.html">KX_NearSensor(KX_CollisionSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageActuator.html">KX_NetworkMessageActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_NetworkMessageSensor.html">KX_NetworkMessageSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ObjectActuator.html">KX_ObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_ParentActuator.html">KX_ParentActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PlanarMap.html">KX_PlanarMap(KX_TextureRenderer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PolyProxy.html">KX_PolyProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_PythonComponent.html">KX_PythonComponent(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RadarSensor.html">KX_RadarSensor(KX_NearSensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_RaySensor.html">KX_RaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_AddObjectActuator.html">KX_SCA_AddObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_DynamicActuator.html">KX_SCA_DynamicActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_EndObjectActuator.html">KX_SCA_EndObjectActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SCA_ReplaceMeshActuator.html">KX_SCA_ReplaceMeshActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_Scene.html">KX_Scene(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SceneActuator.html">KX_SceneActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SoundActuator.html">KX_SoundActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_StateActuator.html">KX_StateActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_SteeringActuator.html">KX_SteeringActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TextureRenderer.html">KX_TextureRenderer(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_TrackToActuator.html">KX_TrackToActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VehicleWrapper.html">KX_VehicleWrapper(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VertexProxy.html">KX_VertexProxy(SCA_IObject)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_VisibilityActuator.html">KX_VisibilityActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.KX_WorldInfo.html">KX_WorldInfo(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_2DFilterActuator.html">SCA_2DFilterActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ANDController.html">SCA_ANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ActuatorSensor.html">SCA_ActuatorSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_AlwaysSensor.html">SCA_AlwaysSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_DelaySensor.html">SCA_DelaySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IActuator.html">SCA_IActuator(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IController.html">SCA_IController(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ILogicBrick.html">SCA_ILogicBrick(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_IObject.html">SCA_IObject(EXP_Value)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ISensor.html">SCA_ISensor(SCA_ILogicBrick)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_InputEvent.html">SCA_InputEvent(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_JoystickSensor.html">SCA_JoystickSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_KeyboardSensor.html">SCA_KeyboardSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_MouseSensor.html">SCA_MouseSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NANDController.html">SCA_NANDController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_NORController.html">SCA_NORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_ORController.html">SCA_ORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertyActuator.html">SCA_PropertyActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PropertySensor.html">SCA_PropertySensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonController.html">SCA_PythonController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonJoystick.html">SCA_PythonJoystick(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonKeyboard.html">SCA_PythonKeyboard(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_PythonMouse.html">SCA_PythonMouse(EXP_PyObjectPlus)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomActuator.html">SCA_RandomActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_RandomSensor.html">SCA_RandomSensor(SCA_ISensor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_VibrationActuator.html">SCA_VibrationActuator(SCA_IActuator)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XNORController.html">SCA_XNORController(SCA_IController)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bge.types.SCA_XORController.html">SCA_XORController(SCA_IController)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bge.logic.html">Game Logic (bge.logic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.render.html">Rasterizer (bge.render)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.texture.html">Video Texture (bge.texture)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.events.html">Game Keys (bge.events)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Physics Constraints (bge.constraints)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bge.app.html">Application Data (bge.app)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aud.html">Audio System (aud)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mathutils.html">Math Types &amp; Utilities (mathutils)</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.bvhtree.html">BVHTree Utilities (mathutils.bvhtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.geometry.html">Geometry Utilities (mathutils.geometry)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.interpolate.html">Interpolation Utilities (mathutils.interpolate)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.kdtree.html">KDTree Utilities (mathutils.kdtree)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mathutils.noise.html">Noise Utilities (mathutils.noise)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bgl.html">OpenGL Wrapper (bgl)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blf.html">Font Drawing (blf)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gpu.html">GPU functions (gpu)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gpu.offscreen.html">GPU Off-Screen Buffer (gpu.offscreen)</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/bge.constraints.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Physics Constraints (bge.constraints)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.createConstraint"><code class="docutils literal notranslate"><span class="pre">createConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.createVehicle"><code class="docutils literal notranslate"><span class="pre">createVehicle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.exportBulletFile"><code class="docutils literal notranslate"><span class="pre">exportBulletFile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getAppliedImpulse"><code class="docutils literal notranslate"><span class="pre">getAppliedImpulse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getVehicleConstraint"><code class="docutils literal notranslate"><span class="pre">getVehicleConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getCharacter"><code class="docutils literal notranslate"><span class="pre">getCharacter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.removeConstraint"><code class="docutils literal notranslate"><span class="pre">removeConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setCcdMode"><code class="docutils literal notranslate"><span class="pre">setCcdMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setContactBreakingTreshold"><code class="docutils literal notranslate"><span class="pre">setContactBreakingTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationAngularTreshold"><code class="docutils literal notranslate"><span class="pre">setDeactivationAngularTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationLinearTreshold"><code class="docutils literal notranslate"><span class="pre">setDeactivationLinearTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationTime"><code class="docutils literal notranslate"><span class="pre">setDeactivationTime()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDebugMode"><code class="docutils literal notranslate"><span class="pre">setDebugMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setGravity"><code class="docutils literal notranslate"><span class="pre">setGravity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setLinearAirDamping"><code class="docutils literal notranslate"><span class="pre">setLinearAirDamping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setNumIterations"><code class="docutils literal notranslate"><span class="pre">setNumIterations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setNumTimeSubSteps"><code class="docutils literal notranslate"><span class="pre">setNumTimeSubSteps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverDamping"><code class="docutils literal notranslate"><span class="pre">setSolverDamping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverTau"><code class="docutils literal notranslate"><span class="pre">setSolverTau()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverType"><code class="docutils literal notranslate"><span class="pre">setSolverType()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSorConstant"><code class="docutils literal notranslate"><span class="pre">setSorConstant()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setUseEpa"><code class="docutils literal notranslate"><span class="pre">setUseEpa()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode-constants">Debug Mode Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_NODEBUG"><code class="docutils literal notranslate"><span class="pre">DBG_NODEBUG</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWWIREFRAME"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWWIREFRAME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWAABB"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWAABB</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWFREATURESTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWFREATURESTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONTACTPOINTS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONTACTPOINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_NOHELPTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_NOHELPTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_PROFILETIMINGS"><code class="docutils literal notranslate"><span class="pre">DBG_PROFILETIMINGS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_ENABLESATCOMPARISION"><code class="docutils literal notranslate"><span class="pre">DBG_ENABLESATCOMPARISION</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DISABLEBULLETLCP"><code class="docutils literal notranslate"><span class="pre">DBG_DISABLEBULLETLCP</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_ENABLECCD"><code class="docutils literal notranslate"><span class="pre">DBG_ENABLECCD</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONSTRAINTS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONSTRAINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONSTRAINTLIMITS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONSTRAINTLIMITS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_FASTWIREFRAME"><code class="docutils literal notranslate"><span class="pre">DBG_FASTWIREFRAME</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-constraint-constants">Create Constraint Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.POINTTOPOINT_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">POINTTOPOINT_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.LINEHINGE_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">LINEHINGE_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.ANGULAR_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">ANGULAR_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.CONETWIST_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">CONETWIST_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.VEHICLE_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">VEHICLE_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.GENERIC_6DOF_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">GENERIC_6DOF_CONSTRAINT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="physics-constraints-bge-constraints">
+<h1>Physics Constraints (bge.constraints)<a class="headerlink" href="#physics-constraints-bge-constraints" title="Permalink to this heading">#</a></h1>
+<p>Bullet Physics provides collision detection
+and rigid body dynamics for the Blender Game Engine.</p>
+<p>Features:</p>
+<ul class="simple">
+<li><p>Vehicle simulation.</p></li>
+<li><p>Rigid body constraints: hinge and point to point (ball socket).</p></li>
+<li><p>Access to internal physics settings,
+like deactivation time, and debugging features</p></li>
+</ul>
+<span class="target" id="module-bge.constraints"></span><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note about parameter settings</p>
+<p>Since this API is not well documented, it can be unclear what kind of values to use for setting parameters.
+In general, damping settings should be in the range of 0 to 1 and
+stiffness settings should not be much higher than about 10.</p>
+</div>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more examples of Bullet physics and how to use them
+see the <a class="reference external" href="https://pybullet.org/Bullet/phpBB3/viewforum.php?f=17">pybullet forum</a>.</p>
+</div>
+<p>Example of how to create a hinge Physics Constraint between two objects.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Basic Physics Constraint</span>
+<span class="sd">++++++++++++++++++++++++</span>
+<span class="sd">Example of how to create a hinge Physics Constraint between two objects.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">bge</span> <span class="kn">import</span> <span class="n">logic</span>
+<span class="kn">from</span> <span class="nn">bge</span> <span class="kn">import</span> <span class="n">constraints</span>
+
+<span class="c1"># get object list</span>
+<span class="n">objects</span> <span class="o">=</span> <span class="n">logic</span><span class="o">.</span><span class="n">getCurrentScene</span><span class="p">()</span><span class="o">.</span><span class="n">objects</span>
+
+<span class="c1"># get object named Object1 and Object 2</span>
+<span class="n">object_1</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;Object1&quot;</span><span class="p">]</span>
+<span class="n">object_2</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="s2">&quot;Object2&quot;</span><span class="p">]</span>
+
+<span class="c1"># want to use Edge constraint type</span>
+<span class="n">constraint_type</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># get Object1 and Object2 physics IDs</span>
+<span class="n">physics_id_1</span> <span class="o">=</span> <span class="n">object_1</span><span class="o">.</span><span class="n">getPhysicsId</span><span class="p">()</span>
+<span class="n">physics_id_2</span> <span class="o">=</span> <span class="n">object_2</span><span class="o">.</span><span class="n">getPhysicsId</span><span class="p">()</span>
+
+<span class="c1"># use bottom right edge of Object1 for hinge position</span>
+<span class="n">edge_position_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">edge_position_y</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">edge_position_z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+<span class="c1"># rotate the pivot z axis about 90 degrees</span>
+<span class="n">edge_angle_x</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">edge_angle_y</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">edge_angle_z</span> <span class="o">=</span> <span class="mf">90.0</span>
+
+<span class="c1"># create an edge constraint</span>
+<span class="n">constraints</span><span class="o">.</span><span class="n">createConstraint</span><span class="p">(</span><span class="n">physics_id_1</span><span class="p">,</span> <span class="n">physics_id_2</span><span class="p">,</span>
+                             <span class="n">constraint_type</span><span class="p">,</span>
+                             <span class="n">edge_position_x</span><span class="p">,</span> <span class="n">edge_position_y</span><span class="p">,</span> <span class="n">edge_position_z</span><span class="p">,</span>
+                             <span class="n">edge_angle_x</span><span class="p">,</span> <span class="n">edge_angle_y</span><span class="p">,</span> <span class="n">edge_angle_z</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.createConstraint">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">createConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">physicsid_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physicsid_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pivot_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pivot_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pivot_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.createConstraint" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a constraint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>physicsid_1</strong> (<em>int</em>) – The physics id of the first object in constraint.</p></li>
+<li><p><strong>physicsid_2</strong> (<em>int</em>) – The physics id of the second object in constraint.</p></li>
+<li><p><strong>constraint_type</strong> (<em>int</em>) – The type of the constraint, see <a class="reference internal" href="#create-constraint-constants">Create Constraint Constants</a>.</p></li>
+<li><p><strong>pivot_x</strong> (<em>float</em>) – Pivot X position. (optional)</p></li>
+<li><p><strong>pivot_y</strong> (<em>float</em>) – Pivot Y position. (optional)</p></li>
+<li><p><strong>pivot_z</strong> (<em>float</em>) – Pivot Z position. (optional)</p></li>
+<li><p><strong>axis_x</strong> (<em>float</em>) – X axis angle in degrees. (optional)</p></li>
+<li><p><strong>axis_y</strong> (<em>float</em>) – Y axis angle in degrees. (optional)</p></li>
+<li><p><strong>axis_z</strong> (<em>float</em>) – Z axis angle in degrees. (optional)</p></li>
+<li><p><strong>flag</strong> (<em>int</em>) – 128 to disable collision between linked bodies. (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A constraint wrapper.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_ConstraintWrapper</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.createVehicle">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">createVehicle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">physicsid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.createVehicle" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a vehicle constraint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>physicsid</strong> (<em>int</em>) – The physics id of the chassis object in constraint.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A vehicle constraint wrapper.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_VehicleWrapper</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.exportBulletFile">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">exportBulletFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.exportBulletFile" title="Permalink to this definition">#</a></dt>
+<dd><p>Exports a file representing the dynamics world (usually using <code class="docutils literal notranslate"><span class="pre">.bullet</span></code> extension).</p>
+<p>See <a class="reference external" href="http://bulletphysics.org/mediawiki-1.5.8/index.php/Bullet_binary_serialization">Bullet binary serialization</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – File path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.getAppliedImpulse">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">getAppliedImpulse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraintId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.getAppliedImpulse" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>constraintId</strong> (<em>int</em>) – The id of the constraint.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The most recent applied impulse.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.getVehicleConstraint">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">getVehicleConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraintId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.getVehicleConstraint" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>constraintId</strong> (<em>int</em>) – The id of the vehicle constraint.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A vehicle constraint object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_VehicleWrapper</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.getCharacter">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">getCharacter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gameobj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.getCharacter" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gameobj</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">KX_GameObject</span></code>) – The game object with the character physics.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Character wrapper.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">KX_CharacterWrapper</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.removeConstraint">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">removeConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraintId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.removeConstraint" title="Permalink to this definition">#</a></dt>
+<dd><p>Removes a constraint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>constraintId</strong> (<em>int</em>) – The id of the constraint to be removed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setCcdMode">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setCcdMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ccdMode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setCcdMode" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Very experimental, not recommended</p>
+</div>
+<p>Sets the CCD (Continous Colision Detection) mode in the Physics Environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ccdMode</strong> (<em>int</em>) – The new CCD mode.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setContactBreakingTreshold">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setContactBreakingTreshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">breakingTreshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setContactBreakingTreshold" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Reasonable default is 0.02 (if units are meters)</p>
+</div>
+<p>Sets tresholds to do with contact point management.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>breakingTreshold</strong> (<em>float</em>) – The new contact breaking treshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setDeactivationAngularTreshold">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setDeactivationAngularTreshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angularTreshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setDeactivationAngularTreshold" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the angular velocity treshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angularTreshold</strong> (<em>float</em>) – New deactivation angular treshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setDeactivationLinearTreshold">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setDeactivationLinearTreshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linearTreshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setDeactivationLinearTreshold" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the linear velocity treshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>linearTreshold</strong> (<em>float</em>) – New deactivation linear treshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setDeactivationTime">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setDeactivationTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setDeactivationTime" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the time after which a resting rigidbody gets deactived.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time</strong> (<em>float</em>) – The deactivation time.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setDebugMode">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setDebugMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setDebugMode" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the debug mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>int</em>) – The new debug mode, see <a class="reference internal" href="#debug-mode-constants">Debug Mode Constants</a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setGravity">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setGravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setGravity" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the gravity force.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Gravity X force.</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Gravity Y force.</p></li>
+<li><p><strong>z</strong> (<em>float</em>) – Gravity Z force.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setLinearAirDamping">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setLinearAirDamping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damping</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setLinearAirDamping" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not implemented</p>
+</div>
+<p>Sets the linear air damping for rigidbodies.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setNumIterations">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setNumIterations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numiter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setNumIterations" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the number of iterations for an iterative constraint solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>numiter</strong> (<em>int</em>) – New number of iterations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setNumTimeSubSteps">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setNumTimeSubSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numsubstep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setNumTimeSubSteps" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the number of substeps for each physics proceed. Tradeoff quality for performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>numsubstep</strong> (<em>int</em>) – New number of substeps.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setSolverDamping">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setSolverDamping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damping</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setSolverDamping" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Very experimental, not recommended</p>
+</div>
+<p>Sets the damper constant of a penalty based solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>damping</strong> (<em>float</em>) – New damping for the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setSolverTau">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setSolverTau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setSolverTau" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Very experimental, not recommended</p>
+</div>
+<p>Sets the spring constant of a penalty based solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tau</strong> (<em>float</em>) – New tau for the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setSolverType">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setSolverType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solverType</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setSolverType" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Very experimental, not recommended</p>
+</div>
+<p>Sets the solver type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>solverType</strong> (<em>int</em>) – The new type of the solver.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setSorConstant">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setSorConstant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setSorConstant" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Very experimental, not recommended</p>
+</div>
+<p>Sets the successive overrelaxation constant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sor</strong> (<em>float</em>) – New sor value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bge.constraints.setUseEpa">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">setUseEpa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bge.constraints.setUseEpa" title="Permalink to this definition">#</a></dt>
+<dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not implemented</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">#</a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bge.constraints.error">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">error</span></span><a class="headerlink" href="#bge.constraints.error" title="Permalink to this definition">#</a></dt>
+<dd><p>Symbolic constant string that indicates error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="debug-mode-constants">
+<h3>Debug Mode Constants<a class="headerlink" href="#debug-mode-constants" title="Permalink to this heading">#</a></h3>
+<p>Debug mode to be used with <a class="reference internal" href="#bge.constraints.setDebugMode" title="bge.constraints.setDebugMode"><code class="xref py py-func docutils literal notranslate"><span class="pre">setDebugMode()</span></code></a>.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_NODEBUG">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_NODEBUG</span></span><a class="headerlink" href="#bge.constraints.DBG_NODEBUG" title="Permalink to this definition">#</a></dt>
+<dd><p>No debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWWIREFRAME">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWWIREFRAME</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWWIREFRAME" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw wireframe in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWAABB">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWAABB</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWAABB" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw Axis Aligned Bounding Box in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWFREATURESTEXT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWFREATURESTEXT</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWFREATURESTEXT" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw features text in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWCONTACTPOINTS">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWCONTACTPOINTS</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWCONTACTPOINTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw contact points in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_NOHELPTEXT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_NOHELPTEXT</span></span><a class="headerlink" href="#bge.constraints.DBG_NOHELPTEXT" title="Permalink to this definition">#</a></dt>
+<dd><p>Debug without help text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>32</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWTEXT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWTEXT</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWTEXT" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw text in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>64</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_PROFILETIMINGS">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_PROFILETIMINGS</span></span><a class="headerlink" href="#bge.constraints.DBG_PROFILETIMINGS" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw profile timings in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>128</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_ENABLESATCOMPARISION">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_ENABLESATCOMPARISION</span></span><a class="headerlink" href="#bge.constraints.DBG_ENABLESATCOMPARISION" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable sat comparision in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>256</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DISABLEBULLETLCP">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DISABLEBULLETLCP</span></span><a class="headerlink" href="#bge.constraints.DBG_DISABLEBULLETLCP" title="Permalink to this definition">#</a></dt>
+<dd><p>Disable Bullet LCP.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>512</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_ENABLECCD">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_ENABLECCD</span></span><a class="headerlink" href="#bge.constraints.DBG_ENABLECCD" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable Continous Collision Detection in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1024</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWCONSTRAINTS">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWCONSTRAINTS</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWCONSTRAINTS" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw constraints in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2048</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_DRAWCONSTRAINTLIMITS">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_DRAWCONSTRAINTLIMITS</span></span><a class="headerlink" href="#bge.constraints.DBG_DRAWCONSTRAINTLIMITS" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw constraint limits in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4096</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.DBG_FASTWIREFRAME">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">DBG_FASTWIREFRAME</span></span><a class="headerlink" href="#bge.constraints.DBG_FASTWIREFRAME" title="Permalink to this definition">#</a></dt>
+<dd><p>Draw a fast wireframe in debug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>8192</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="create-constraint-constants">
+<h3>Create Constraint Constants<a class="headerlink" href="#create-constraint-constants" title="Permalink to this heading">#</a></h3>
+<p>Constraint type to be used with <a class="reference internal" href="#bge.constraints.createConstraint" title="bge.constraints.createConstraint"><code class="xref py py-func docutils literal notranslate"><span class="pre">createConstraint()</span></code></a>.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.POINTTOPOINT_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">POINTTOPOINT_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.POINTTOPOINT_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.LINEHINGE_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">LINEHINGE_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.LINEHINGE_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.ANGULAR_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">ANGULAR_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.ANGULAR_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>3</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.CONETWIST_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">CONETWIST_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.CONETWIST_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.VEHICLE_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">VEHICLE_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.VEHICLE_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>11</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bge.constraints.GENERIC_6DOF_CONSTRAINT">
+<span class="sig-prename descclassname"><span class="pre">bge.constraints.</span></span><span class="sig-name descname"><span class="pre">GENERIC_6DOF_CONSTRAINT</span></span><a class="headerlink" href="#bge.constraints.GENERIC_6DOF_CONSTRAINT" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>12</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bge.events.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Game Keys (bge.events)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bge.app.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application Data (bge.app)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.createConstraint"><code class="docutils literal notranslate"><span class="pre">createConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.createVehicle"><code class="docutils literal notranslate"><span class="pre">createVehicle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.exportBulletFile"><code class="docutils literal notranslate"><span class="pre">exportBulletFile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getAppliedImpulse"><code class="docutils literal notranslate"><span class="pre">getAppliedImpulse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getVehicleConstraint"><code class="docutils literal notranslate"><span class="pre">getVehicleConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.getCharacter"><code class="docutils literal notranslate"><span class="pre">getCharacter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.removeConstraint"><code class="docutils literal notranslate"><span class="pre">removeConstraint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setCcdMode"><code class="docutils literal notranslate"><span class="pre">setCcdMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setContactBreakingTreshold"><code class="docutils literal notranslate"><span class="pre">setContactBreakingTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationAngularTreshold"><code class="docutils literal notranslate"><span class="pre">setDeactivationAngularTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationLinearTreshold"><code class="docutils literal notranslate"><span class="pre">setDeactivationLinearTreshold()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDeactivationTime"><code class="docutils literal notranslate"><span class="pre">setDeactivationTime()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setDebugMode"><code class="docutils literal notranslate"><span class="pre">setDebugMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setGravity"><code class="docutils literal notranslate"><span class="pre">setGravity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setLinearAirDamping"><code class="docutils literal notranslate"><span class="pre">setLinearAirDamping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setNumIterations"><code class="docutils literal notranslate"><span class="pre">setNumIterations()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setNumTimeSubSteps"><code class="docutils literal notranslate"><span class="pre">setNumTimeSubSteps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverDamping"><code class="docutils literal notranslate"><span class="pre">setSolverDamping()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverTau"><code class="docutils literal notranslate"><span class="pre">setSolverTau()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSolverType"><code class="docutils literal notranslate"><span class="pre">setSolverType()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setSorConstant"><code class="docutils literal notranslate"><span class="pre">setSorConstant()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.setUseEpa"><code class="docutils literal notranslate"><span class="pre">setUseEpa()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debug-mode-constants">Debug Mode Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_NODEBUG"><code class="docutils literal notranslate"><span class="pre">DBG_NODEBUG</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWWIREFRAME"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWWIREFRAME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWAABB"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWAABB</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWFREATURESTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWFREATURESTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONTACTPOINTS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONTACTPOINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_NOHELPTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_NOHELPTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWTEXT"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWTEXT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_PROFILETIMINGS"><code class="docutils literal notranslate"><span class="pre">DBG_PROFILETIMINGS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_ENABLESATCOMPARISION"><code class="docutils literal notranslate"><span class="pre">DBG_ENABLESATCOMPARISION</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DISABLEBULLETLCP"><code class="docutils literal notranslate"><span class="pre">DBG_DISABLEBULLETLCP</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_ENABLECCD"><code class="docutils literal notranslate"><span class="pre">DBG_ENABLECCD</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONSTRAINTS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONSTRAINTS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_DRAWCONSTRAINTLIMITS"><code class="docutils literal notranslate"><span class="pre">DBG_DRAWCONSTRAINTLIMITS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.DBG_FASTWIREFRAME"><code class="docutils literal notranslate"><span class="pre">DBG_FASTWIREFRAME</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-constraint-constants">Create Constraint Constants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.POINTTOPOINT_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">POINTTOPOINT_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.LINEHINGE_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">LINEHINGE_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.ANGULAR_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">ANGULAR_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.CONETWIST_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">CONETWIST_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.VEHICLE_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">VEHICLE_CONSTRAINT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bge.constraints.GENERIC_6DOF_CONSTRAINT"><code class="docutils literal notranslate"><span class="pre">GENERIC_6DOF_CONSTRAINT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Range Engine
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright This page is licensed under a CC-BY-SA 4.0 Int. License..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

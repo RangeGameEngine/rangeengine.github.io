@@ -1,0 +1,156 @@
+body{
+    font-family: Rubik, Roboto Condensed;
+}
+
+.jam-current{
+    text-shadow: 5px 5px 10px #00000050;
+    font-size: 80px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.jam-theme{
+    margin-top: 0;
+    text-shadow: 5px 5px 10px #00000050;
+    font-weight: bold;
+}
+
+/* COUNTER BLOCKS */
+.counter-block-divs{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.counter-block{
+    background: linear-gradient(180deg,#E6C767, #898121);
+    padding: 10% 10% 10% 10%;
+    margin: 0 10px 0 10px;
+    text-align: center;
+    border-radius: 10px;
+    outline: 6px solid #4C4B16;
+    box-shadow: 5px 5px 10px 10px #00000050;
+    width: 180px;
+    overflow: hidden;
+}
+.counter-block p{
+    font-weight: bold;
+    font-size: 80px;
+    color: #FFC984;
+    text-shadow: 5px 5px 0px #cf643249;
+}
+@keyframes counterSec{
+    0% {
+        color: transparent;
+        text-shadow: 5px 5px 0px #00000000;
+    }
+    20% {
+        color: #FFC984;
+        text-shadow: 5px 5px 0px #cf643249;
+    }
+    80% {
+        color: #FFC984;
+        text-shadow: 5px 5px 0px #cf643249;
+    }
+    100% {
+        color: transparent;
+        text-shadow: 5px 5px 0px #00000000;
+    }
+}
+.counter-block-sec-p{
+    animation: counterSec 1s infinite;
+}
+.counter-block i{
+    font-style: inherit;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0.5% 0 0 0%;
+    position: absolute;
+    color: #00000060;
+}
+
+/* FEATURED GAMES */
+.featured-games-tab{
+    display: inline-flex;
+    width: 100%;
+}
+.featured-game{
+    width: 20%;
+    padding: 2% 4%;
+    transition: all 0.15s ease-in;
+}
+.featured-game:hover{
+    padding: 1.8% 4%;
+    transition: all 0.15s ease-out;
+}
+.featured-game a{
+    height: auto;
+    display: inline-block;
+    box-shadow: 5px 5px 5px 2px #00000050;
+    border-radius: 10px;
+}
+.featured-game div{
+    background-color: #2b2b2b;
+    padding: 20px 0;
+    border-radius: 0px 0px 10px 10px;
+}
+.featured-game img{
+    max-width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    vertical-align: bottom;
+}
+
+/* JAM LIVE AD */
+.jam-live-artc{
+    display: flex;
+    background-color:#0f0f0f;
+    justify-content: center;
+    padding: 8% 0;
+}
+.jam-live-desc{
+    font-weight: 500;
+    font-size: 40px;
+    display: inline-block;
+    justify-content: center;
+    width: 50%;
+}
+.jam-live-desc p{
+    text-align: left;
+}
+.jam-live-desc img{
+    max-width: 20%;
+    filter: invert();
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px){
+    .featured-games-tab{
+        display: block;
+        width: 100%;
+    }
+    .featured-game{
+        width: auto;
+        padding: 15%;
+    }
+    .featured-game:hover{
+        width: auto;
+        padding: 14%;
+    }
+
+    .jam-live-artc{
+        display: block;
+    }
+    .jam-live-desc{
+        width: 100%;
+    }
+    .jam-live-desc p{
+        text-align: center;
+    }
+    .jam-live-desc img{
+        max-width: 40%;
+        filter: invert();
+    }
+    .jam-live-artc iframe{
+        width: 90%;
+        height: 210px;
+    }
+}

@@ -1,0 +1,75 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx-Book-Theme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Edit this page"
+msgstr "Muutke seda lehte"
+
+msgid "Fullscreen mode"
+msgstr "Täisekraanirežiim"
+
+msgid "previous page"
+msgstr "eelmine leht"
+
+msgid "Last updated on"
+msgstr "Viimati uuendatud"
+
+msgid "Download notebook file"
+msgstr "Laadige sülearvuti fail alla"
+
+msgid "repository"
+msgstr "hoidla"
+
+msgid "Download this page"
+msgstr "Laadige see leht alla"
+
+msgid "Sphinx Book Theme"
+msgstr "Sfinksiraamatu teema"
+
+msgid "Print to PDF"
+msgstr "Prindi PDF-i"
+
+msgid "Toggle navigation"
+msgstr "Lülita navigeerimine sisse"
+
+msgid "Open an issue"
+msgstr "Avage probleem"
+
+msgid "By the"
+msgstr "Autor"
+
+msgid "Launch"
+msgstr "Käivitage"
+
+msgid "Download source file"
+msgstr "Laadige alla lähtefail"
+
+msgid "Copyright"
+msgstr "Autoriõigus"
+
+msgid "Theme by the"
+msgstr "Teema"
+
+msgid "Contents"
+msgstr "Sisu"
+
+msgid "Source repository"
+msgstr "Allikahoidla"
+
+msgid "next page"
+msgstr "järgmine leht"
+
+msgid "suggest edit"
+msgstr "soovita muuta"
+
+msgid "By"
+msgstr "Kõrval"
+
+msgid "open issue"
+msgstr "avatud küsimus"

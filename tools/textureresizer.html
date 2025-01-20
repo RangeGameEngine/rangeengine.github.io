@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Range Engine</title>
+    <meta name="description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
+    <meta name="theme-color" content="#f00000">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Range Engine"/>
+    <meta property="og:description" content="Range Engine is an Light and Powerful Game Engine and 3D Software designed to Indie developers. Where you can make your own Models, Materials, Animations, and Publish Games!"/>
+    <meta property="og:site_name" content="Range Engine"/>
+    <meta property="og:image" content="https://rangeengine.tech//img/ogp_splash.jpg"/>
+	<meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/rangecss.css"/>
+    <link rel="stylesheet" href="/css/header_footer.css"/>
+    <link rel="stylesheet" href="/css/sliders.css"/>
+    <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script>
+      $(function(){
+          $("#header").load("../../header.html");
+          $("#footer").load("../../footer.html");
+      });
+    </script>
+    <style>
+        #dropArea {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #9e9e9e;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        #globalWidth, #globalHeight {
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+            width: 5%;
+            margin-right: 5px;
+            border: none;
+            background-color: #393939;
+            color: #9e9e9e;
+            outline-style: solid;
+            outline-color: #434343eb;
+            outline-width: 1px;
+            font-family: Roboto Condensed, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        .texture-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #262626;
+            padding: 8px 0;
+            margin: 4px 0;
+        }
+        .texture-container img{
+            width: 100px;
+            height: 100px;
+        }
+        .original-res{
+            margin-left: 20px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        .newHeight, .newWidth{
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+            width: 12%;
+            margin-right: 5px;
+            border: none;
+            font-size: 15px;
+            background-color: #393939;
+            color: #9e9e9e;
+            outline-style: solid;
+            outline-color: #434343eb;
+            outline-width: 1px;
+            font-family: Roboto Condensed, Arial, Helvetica, sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        .resize-btn, .download-btn{
+            display: contents;
+            cursor: pointer;
+            color: white;
+            border: none;
+            background: transparent;
+            font-family: Roboto Condensed;
+        }
+        .buttons {
+            cursor: pointer;
+            padding: 8px 6px;
+            margin: 5px 5px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            background-color: #00000000;
+            color: #ffffff;
+            outline-style: solid;
+            outline-color: #ffffffeb;
+            outline-width: 2px;
+            font-family: Roboto Condensed;
+        }
+        .texture-container i{
+            font-size: 40px !important;
+        }
+        canvas {
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="header"></div>
+    <article>
+        <div class="splashhome" style="margin: 80px 0 0 0;">
+            <h1 class="splashtitsec">Texture Resizer</h1>
+        </div>
+        <div style="display:block;justify-content:center;margin: 0 15% 0 15%;">
+            <div id="dropArea">Drag your textures here</div>
+            <div style="display:flex;align-items:center;justify-content:center;">
+                <label for="globalWidth" style="font-size:24px;font-weight:800;letter-spacing:-1px;">Global Resolution:</label>
+                <input type="number" id="globalWidth" placeholder="Width" min="1">
+                <input type="number" id="globalHeight" placeholder="Height" min="1">
+                <button id="applyGlobalBtn" class="buttons"><i class="material-symbols-outlined">check</i> Apply to All</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;margin: 0 15% 0 15%;">
+                <p style="font-size:24px;font-weight:800;letter-spacing:-1px;">Global Functions:</p>
+                <button id="resizeAllBtn" class="buttons"><i class="material-symbols-outlined">Refresh</i> Resize All</button>
+                <button id="downloadAllBtn" class="buttons" style="display: none;"><i class="material-symbols-outlined">Download</i> Download All</button>
+            </div>
+            <div id="output"></div>
+            <canvas id="canvas"></canvas>
+            <script src="/js/textureresize.js"></script>
+        </div>
+    </article>
+    <div id="footer"></div>
+  </body>
+</html>

@@ -1,151 +1,90 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Range Engine Store</title>
-    <meta name="description" content="Range Engine Store │ The Best Place For You Find RanGE Content To Use In Your Projects"/>
+    <meta name="description" content="Bring your game projects to life with high-quality, ready-to-use Range Engine resources!"/>
     <meta name="theme-color" content="#f00000">
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Range Engine Store"/>
-    <meta property="og:description" content="Range Engine Store │ The Best Place For You Find RanGE Content To Use In Your Projects"/>
+    <meta property="og:description" content="Bring your game projects to life with high-quality, ready-to-use Range Engine resources!"/>
     <meta property="og:site_name" content="Range Engine"/>
     <meta property="og:image" content="https://rangeengine.tech//img/ogp_splash.jpg"/>
 	  <meta name="twitter:card" content="summary_large_image">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/rangecss.css"/>
+    <link rel="stylesheet" href="/css/header_footer.css"/>
     <link rel="stylesheet" href="/css/store.css"/>
     <link rel="shortcut icon" href="/img/favicon.png" type="x-png"/>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="/js/searchbar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.min.js"></script>
   </head>
   <body id="storebody">
     <div id="loading">
       <div></div>
     </div>
-    <header class="header" style="background-color:#353535;display:block;">
-      <div style="display:flex;justify-content:space-between;">
-        <h1 class="title"><a href="store"><img class="logo" src="/img/store/RangeEngineStoreLogo.png" alt="Range Engine Store"/></a><p style="font-size:15px;font-weight:lighter;color:#ffffff2e;font-family:Titillium Web, Arial, Helvetica, sans-serif;cursor:default;">Beta</p><!--a href="/" title="Range Engine Home"><img class="logo" width="35px" src="/img/store/RGEHome.png" alt="Return Homepage"/></a--></h1>
-        <input type="text" id="searchbar" onkeyup="searchBar()" placeholder="🔍︎ Search...">
+    
+    <header class="header-store">
+      <h1><a href="store"><img class="logo" style="max-width:260px;margin-bottom:-10px;" src="/img/store/RangeStore_Logo.png" alt="Range Store"/></a><!--a href="/" title="Range Engine Home"><img class="logo" width="35px" src="/img/store/RGEHome.png" alt="Return Homepage"/></a--></h1>
+      <a href="/" style="font-size:12px;text-decoration:underline;color:#ffffff80;">↵ Back to Range Engine Home</a>
+      <h4 style="margin: 10px 40px;text-align: left;">Tags:</h4>
+      <div>
+        <a class="storetags" onclick="writeSearchBar('Templates')">Templates</a>
+        <a class="storetags" onclick="writeSearchBar('Components')">Components</a>
+        <a class="storetags" onclick="writeSearchBar('Addons')">Addons</a>
+        <a class="storetags" onclick="writeSearchBar('Scripts')">Scripts</a>
+        <a class="storetags" onclick="writeSearchBar('Shaders')">Shaders</a>
+        <a class="storetags" onclick="writeSearchBar('PostFX')">PostFX</a>
+        <a class="storetags" onclick="writeSearchBar('Assets')">Assets</a>
+        <a class="storetags" style="display:block;background:transparent;border:none;" onclick="writeSearchBar('ClearBarCommand')">Clear All</a>
       </div>
-      <div style="background-color:#393939;width:100%;">
-        <nav>
-          <ul style="display:inline-flex;padding:0;margin:5px 0px;">
-            <li><a class="storetags" onclick="writeTSB()">Templates</a></li>
-            <li><a class="storetags" onclick="writeCSB()">Components</a></li>
-            <li><a class="storetags" onclick="writeASB()">Addons</a></li>
-            <li><a class="storetags" onclick="writeSSB()">Scripts</a></li>
-            <li><a class="storetags" onclick="writeSHSB()">Shaders</a></li>
-            <li><a class="storetags" onclick="writeASSB()">Assets</a></li>
-          </ul>
-        </nav>
+      <h4 style="margin: 10px 40px;text-align: left;">Price:</h4>
+      <div style="display:inline-block;justify-content:left;text-align:left;font-size:14px;color:#c4c4c4;">
+        <label>
+            Free
+            <input type="checkbox" id="isFree">
+        </label>
+        <br>
+        <label>
+          Max Price:
+          <input type="number" id="maxPrice" placeholder="$0" min="0">
+        </label>
       </div>
+      <br><br>
+      <!--p style="font-size:18px;font-weight:600;text-align:left;display:inline-block;align-items:end;">Want's to collaborate or announce products on Range Store?<br>Join in our official Discord Server and share your work in the #resources chat!</p-->
     </header>
-    <section id="storesec">
-      <div class="splashhome">
-        <div class="sobreoprojeto">
-          <h1 class="splashtitsec" style="font-size:500%;">Range Engine Store (Beta)</h1>
-          <p class="splashtitsec" style="font-size:18px;letter-spacing:-1px;text-align:left;text-transform:none;text-shadow: 0 0 20px black;">Range Engine Store is the best place to find a lot of ready to use Range Engine content<br>for your projects, made by the community and official devs!</p>
-        </div>
+    
+    <!--section id="storesec">
+    <div class="splashhome">
+      <div class="sobreoprojeto">
+        <h1 class="splashtitsec" style="font-size:500%;">Range Engine Store (Beta)</h1>
+        <p class="splashtitsec" style="font-size:18px;letter-spacing:-1px;text-align:left;text-transform:none;text-shadow: 0 0 20px black;">Range Engine Store is the best place to find a lot of ready to use Range Engine content<br>for your projects, made by the community and official devs!</p>
+      </div>
       </div>
       <div style="padding:5%;"></div>
     </section>
+
     <!--Page Loading Ends Here-->
     <script>
       var loader = document.getElementById("loading");
       window.addEventListener("load", function(){loader.style.display = "none";})
     </script>
     <!---->
-    <article style="padding-top:0;background-color: rgb(28, 27, 27);">
-      <h3 style="margin-bottom:20px;background-color:rgb(117, 42, 42);width:100%;padding:5px 0 5px 0;font-family:Roboto Condensed, Arial, Helvetica, sans-serif;">↑ Recently Released</h3>
-      <!--p class="no-results">No results found...</p-->
-      <div class="storeitems">
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="000">
-            <img class="img-pdt" src="/store/templates/data/thumbs/Basic First Person Controller.jpg" alt="FPS Template"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>First Person Character</b><br>
-              Basic FPS Character Controller Template</p>
-              <p class="class-pdt">(Python Component - Template)</p>
-            </div>
-          </div>
-        </div>
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="001">
-            <img class="img-pdt" src="/img/store/wip.jpg" alt="TPS Template"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>Third Person Character</b><br>
-              Basic Third Person Character Controller Template</p>
-              <p class="class-pdt">(Python Component - Template)</p>
-            </div>
-          </div>
-        </div>
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="002">
-            <img class="img-pdt" src="/img/store/wip.jpg" alt="Vehicle Template"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>Vehicle Controller</b><br>
-              Basic Vehicle Controller Template</p>
-              <p class="class-pdt">(Python Component - Template)</p>
-            </div>
-          </div>
-        </div>
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="003">
-            <img class="img-pdt" src="/store/addons/data/thumbs/BGE_Post-Process_RangeEngine.jpg" alt="BGE Post Process"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>BGE Post Process Filters</b><br>
-              GLSL Post Processing Shaders Addon</p>
-              <p class="class-pdt">(Addon - Shader)</p>
-            </div>
-          </div>
-        </div>
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="004">
-            <img class="img-pdt" src="/img/store/wip.jpg" alt="Inputs Helper"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>Inputs Helper</b><br>
-              Basic FPS Character Controller Template</p>
-              <p class="class-pdt">(Addon - Script)</p>
-            </div>
-          </div>
-        </div>
-        <div class="artigos">
-          <div class="item-pdt" pdt-id="005">
-            <img class="img-pdt" src="/store/templates/data/thumbs/SpriteAnimation.jpg" alt=">Sprite Animation"/>
-            <div class="descbox-pdt">
-              <p class="name-pdt"><b>Sprite Animation</b><br>
-              Sprite Animation With Nodes Template</p>
-              <p class="class-pdt">(Template - Shaders)</p>
-            </div>
-          </div>
-        </div>
+
+    <article class="store-article">
+      <div class="search-article">
+        <input type="text" id="searchBar" onkeyup="searchBar()" placeholder="🔍︎ Search...">
+      </div>
+      <h3 style="margin:58px 0 0 0;background-color:rgb(117, 42, 42);width:100%;padding:5px 0 5px 0;">↑ Recently Released</h3>
+      <div class="storeItems" id="items"></div>
+      <div class="storeItems">
+        <button id="loadingMore" style="text-align:center;margin:50px;padding:10px 20px;border:1px solid white;border-radius:5px;font-family:Rubik;">Load More Items</button>
+        <div id="loadingItems" style="display:none; text-align:center; margin-top:20px;">Loading</div>
+        <p class="no-results">No results found...</p>
       </div>
     </article>
-    <script src="/store/data.js"></script>
-    <footer style="height:60%;">
-      <div class="footerobjs">
-        <div class="spanrange">
-          <span id="no_underline" class="ftlink">&copy; 2022 - <span id="copyright-year"></span>, Range Engine</span>
-          <script>
-            $(document).ready(function() {
-              document.getElementById('copyright-year').appendChild(
-                document.createTextNode(
-                  new Date().getFullYear()
-                )
-              );
-            });
-          </script>
-        </div>
-        <div class="footer-links">
-          <a target=”_blank” href="https://github.com/rangeengine/Range-Engine-Wiki/wiki/Release-notes"><img class="footer-links-icon" src="/img/icons/github.svg"></a>
-          <a target=”_blank” href="https://www.patreon.com/rangeengine"><img class="footer-links-icon" src="/img/icons/patreon.svg"></a>
-          <a target=”_blank” href="https://discord.gg/PV6bAvUFq3"><img class="footer-links-icon" src="/img/icons/discord.svg"></a>
-          <a target=”_blank” href="https://youtube.com/channel/UCWLwYxekuvOVaMsquS3OgPg"><img class="footer-links-icon" src="/img/icons/youtube.svg"></a>
-        </div>
-      </div>
-    </footer>
+    <script src="/store/js/itemCreator.js"></script>
+    <script src="/store/js/searchEngine.js" async></script>
   </body>
 </html>
